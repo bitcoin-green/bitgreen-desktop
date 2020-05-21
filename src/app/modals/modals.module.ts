@@ -11,7 +11,6 @@ import { ModalsHelperService } from 'app/modals/modals-helper.service';
 
 /* modals */
 import { CreateWalletComponent } from './createwallet/createwallet.component';
-import { ColdstakeComponent } from './coldstake/coldstake.component';
 import { SyncingComponent } from './syncing/syncing.component';
 import { UnlockwalletComponent } from './unlockwallet/unlockwallet.component';
 import { EncryptwalletComponent } from './encryptwallet/encryptwallet.component';
@@ -45,7 +44,6 @@ import { SendConfirmationModalComponent } from 'app/modals/send-confirmation-mod
     UnlockwalletComponent,
     EncryptwalletComponent,
     AlertComponent,
-    ColdstakeComponent,
     MultiwalletComponent,
     ManageWidgetsComponent,
     SendConfirmationModalComponent
@@ -66,7 +64,6 @@ import { SendConfirmationModalComponent } from 'app/modals/send-confirmation-mod
     AlertComponent,
     ManageWidgetsComponent,
     CreateWalletComponent,
-    ColdstakeComponent,
     SendConfirmationModalComponent
   ],
 })

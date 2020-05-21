@@ -8,7 +8,6 @@ import { CoreUiModule } from '../../core-ui/core-ui.module';
 
 import { OverviewComponent } from './overview.component';
 import { StakinginfoComponent } from './widgets/stakinginfo/stakinginfo.component';
-import { ColdstakeComponent } from './widgets/coldstake/coldstake.component';
 import { TransactionService } from 'app/wallet/wallet/shared/transaction.service';
 
 import { TransactionsTableComponent } from 'app/wallet/wallet/shared/transaction-table/transaction-table.component';
@@ -30,8 +29,7 @@ describe('OverviewComponent', () => {
       ],
       declarations: [
         OverviewComponent,
-        StakinginfoComponent,
-        ColdstakeComponent
+        StakinginfoComponent
       ]
     })
 
