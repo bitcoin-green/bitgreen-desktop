@@ -24,7 +24,7 @@ function getDefaultParticlCorePath() {
       break;
     }
 
-    case 'win32': {
+    case 'win64': {
       dir = prepareDir(process.env['APPDATA'], appName)
            .or(homeDir, 'AppData', 'Roaming', appName).result;
       break;

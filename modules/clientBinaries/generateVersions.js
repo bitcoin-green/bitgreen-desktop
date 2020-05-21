@@ -28,7 +28,7 @@ var getHash = function (platform, name, hashes) {
  */
 var getWinAsset = function(data, asset, hashes) {
   data.platform = "win";
-  data.arch = asset.name.includes("win64") ? "x64" : "ia32";
+  data.arch = "x64";
   data.type = asset.content_type === "application/zip" ? "zip" : 'zip';
   data.sha256 = getHash(data.platform, asset.name, hashes);
 }
@@ -40,7 +40,7 @@ var getOSXAsset = function (data, asset, hashes) {
     data.type = "dmg";
   } else if (asset.name.endsWith('.tar.gz') || asset.name.endsWith('.tar')) {
     data.type = "tar";
-  } 
+  }
   data.sha256 = getHash("osx", asset.name, hashes);
 }
 
@@ -82,7 +82,7 @@ var getAssetDetails = function (asset, hashes, version) {
 
   // add .exe extension for windows binaries
   let bin = `particld${data.platform === 'win' ? '.exe' : ''}`
-  
+
   // return asset only if it is fully compliant
   return (data.platform && data.arch && data.type ? {
     platform: data.platform,
@@ -146,7 +146,7 @@ got(`${releasesURL}`).then(response => {
     releaseIndex++;
   }
   release = body[releaseIndex];
-  
+
   let tag = release.tag_name.substring(1);
   let binaries = [];
 
@@ -189,7 +189,7 @@ got(`${releasesURL}`).then(response => {
           binaries.push(entry);
         }
       })
-      
+
       // include entries in JSON object
       var platforms = json.clients.particld.platforms;
       binaries.forEach(binary => {
