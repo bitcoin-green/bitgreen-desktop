@@ -390,7 +390,7 @@ class Manager extends EventEmitter {
 
     // platform
     switch (process.platform) {
-      case 'win64':
+      case 'win32':
         this._os = 'win';
         break;
       case 'darwin':
@@ -495,7 +495,7 @@ class Manager extends EventEmitter {
       let command;
       let args = [];
 
-      if (process.platform === 'win64') {
+      if (process.platform === 'win32') {
           command = 'where';
       } else {
           command = 'which';

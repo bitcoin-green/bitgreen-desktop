@@ -120,7 +120,7 @@ class DaemonManager extends EventEmitter {
       // prepare node info
       const platform = process.platform
         .replace('darwin', 'mac')
-        .replace('win64', 'win')
+        .replace('win32', 'win')
         .replace('freebsd', 'linux')
         .replace('sunos', 'linux');
       const binaryVersion = latestConfig.clients[nodeType].platforms[platform][process.arch];
