@@ -18,6 +18,7 @@ import { ConsoleModalComponent } from './modal/help-modal/console-modal.componen
 export class StatusComponent implements OnInit, OnDestroy {
 
   peerListCount: number = 0;
+  public coldStakingStatus: boolean;
   public encryptionStatus: string = 'Locked';
   private _sub: Subscription;
   private destroyed: boolean = false;
@@ -43,6 +44,10 @@ export class StatusComponent implements OnInit, OnDestroy {
     this._rpcState.observe('getwalletinfo', 'encryptionstatus')
       .takeWhile(() => !this.destroyed)
       .subscribe(status => this.encryptionStatus = status);
+
+    this._rpcState.observe('ui:coldstaking')
+      .takeWhile(() => !this.destroyed)
+      .subscribe(status => this.coldStakingStatus = status);
 
     /* Bug: If you remove this line, then the state of 'txcount' doesn't update in the Transaction.service */
     this._rpcState.observe('getwalletinfo', 'txcount').takeWhile(() => !this.destroyed).subscribe(txcount => { });
@@ -76,6 +81,10 @@ export class StatusComponent implements OnInit, OnDestroy {
       default:
         return '-off'; // TODO: icon?
     }
+  }
+
+  getColdStakingStatus() {
+    return (this.coldStakingStatus) ? 'enabled' : 'disabled';
   }
 
   toggle() {
