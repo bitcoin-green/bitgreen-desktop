@@ -25,8 +25,8 @@ If applicable, add screenshots to help explain your problem.
 
 **Versions (please complete the following information):**
  - OS: [e.g. OSX 10.1.4.5 or Windows 10 or Linux Ubuntu 18.10]
- - Particl Desktop: [e.g. v2.2.0]
- - Particl Core: [e.g. v0.18.1.6]
+ - Bitgreen Desktop: [e.g. v2.2.0]
+ - Bitgreen Core: [e.g. v0.18.1.6]
 
 **Additional context**
 Add any other context about the problem here.

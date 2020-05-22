@@ -9,7 +9,7 @@ const platform      = require('os').platform();
 
 /* correct appName and userData to respect Linux standards */
 if (process.platform === 'linux') {
-  app.setName('particl-desktop');
+  app.setName('bitgreen-desktop');
   app.setPath('userData', `${app.getPath('appData')}/${app.getName()}`);
 }
 
@@ -41,12 +41,12 @@ app.on('ready', () => {
   log.info('app ready')
   log.debug('argv', process.argv);
   log.debug('options', options);
-  
-  app.setAppUserModelId("io.particl.desktop");
-  
+
+  app.setAppUserModelId("io.bitgreen.desktop");
+
   // initialize the authentication filter
   _auth.init();
-  
+
   initMainWindow();
   init.start(mainWindow);
 });
@@ -111,7 +111,7 @@ function initMainWindow() {
   // to show it again.
   mainWindow.setMenuBarVisibility(false);
   mainWindow.setAutoHideMenuBar(true);
-  
+
   // and load the index.html of the app.
   if (options.dev) {
     mainWindow.loadURL('http://localhost:4200');
@@ -206,11 +206,11 @@ function makeTray() {
       submenu: [
         {
           label: 'About ' + app.getName(),
-          click() { electron.shell.openExternal('https://particl.io/#about'); }
+          click() { electron.shell.openExternal('https://bitgreen.io/#about'); }
         },
         {
-          label: 'Visit Particl.io',
-          click() { electron.shell.openExternal('https://particl.io'); }
+          label: 'Visit Bitgreen.io',
+          click() { electron.shell.openExternal('https://bitgreen.io'); }
         },
         {
           label: 'Visit Electron',
@@ -229,7 +229,7 @@ function makeTray() {
   // }
 
   // Set the tray icon
-  tray.setToolTip('Particl ' + app.getVersion());
+  tray.setToolTip('Bitgreen ' + app.getVersion());
   tray.setContextMenu(contextMenu)
 
   // Always show window when tray icon clicked

@@ -8,7 +8,7 @@ export const environment = {
   production: false,
   envName: 'dev',
   version: require('../../package.json').version,
-  releasesUrl: 'https://api.github.com/repos/particl/particl-desktop/releases/latest',
-  particlHost: 'localhost',
-  particlPort: 51935
+  releasesUrl: 'https://api.github.com/repos/bitgreen/bitgreen-desktop/releases/latest',
+  bitgreenHost: 'localhost',
+  bitgreenPort: 51935
 };

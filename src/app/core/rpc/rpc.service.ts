@@ -19,7 +19,7 @@ declare global {
 }
 
 /**
- * The RPC service that maintains a single connection to the particld daemon.
+ * The RPC service that maintains a single connection to the bitgreend daemon.
  *
  * It has two important functions: call and register.
  */
@@ -34,13 +34,13 @@ export class RpcService implements OnDestroy {
    * IP/URL for daemon (default = localhost)
    */
   // private hostname: String = HOSTNAME; // TODO: URL Flag / Settings
-  private hostname: String = environment.particlHost;
+  private hostname: String = environment.bitgreenHost;
 
   /**
    * Port number of of daemon (default = 51935)
    */
   // private port: number = TESTNET_PORT; // TODO: Mainnet / testnet flag...
-  private port: number = environment.particlPort;
+  private port: number = environment.bitgreenPort;
 
   // note: basic64 equiv= dGVzdDp0ZXN0
   private username: string = 'test';
@@ -60,10 +60,10 @@ export class RpcService implements OnDestroy {
   }
 
   /**
-   * The call method will perform a single call to the particld daemon and perform a callback to
+   * The call method will perform a single call to the bitgreend daemon and perform a callback to
    * the instance through the function as defined in the params.
    *
-   * @param {string} method  The JSON-RPC method to call, see ```./particld help```
+   * @param {string} method  The JSON-RPC method to call, see ```./bitgreend help```
    * @param {Array<Any>} params  The parameters to pass along with the JSON-RPC request.
    * The content of the array is of type any (ints, strings, booleans etc)
    *

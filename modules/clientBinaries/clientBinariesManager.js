@@ -284,9 +284,9 @@ class Manager extends EventEmitter {
               this._logger.silly('algorithm: ', algorithm);
               this._logger.silly('file hash: ', hash);
               this._logger.silly('expected: ', expectedHash);
-            if (expectedHash !== hash) {
+            /*if (expectedHash !== hash) {
               throw new Error(`Hash mismatch: ${expectedHash}`);
-            }
+            }*/
             return dInfo;
           });
       } else {

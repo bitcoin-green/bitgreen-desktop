@@ -5,14 +5,14 @@ const log         = require('electron-log');
 const options    = require('../options').get();
 const removeWalletAuthentication = require('../webrequest/http-auth').removeWalletAuthentication;
 /*
-** returns Particl config folder
+** returns Bitgreen config folder
 */
-function getDefaultParticlCorePath() {
+function getDefaultBitgreenCorePath() {
 
   let homeDir = os.homedir ? os.homedir() : process.env['HOME'];
 
   let dir,
-      appName = 'Particl';
+      appName = 'Bitgreen';
   switch (process.platform) {
     case 'linux': {
       dir = prepareDir(homeDir, '.' + appName.toLowerCase()).result;
@@ -39,7 +39,7 @@ function getDefaultParticlCorePath() {
 }
 
 function getCookieFilePath() {
-  let dataDir = options.datadir ? options.datadir : getDefaultParticlCorePath();
+  let dataDir = options.datadir ? options.datadir : getDefaultBitgreenCorePath();
   const COOKIE_FILE = dataDir
                     + (options.testnet ? '/testnet' : '')
                     + '/.cookie';
@@ -97,7 +97,7 @@ function mkDir(dirPath, root) {
 
 /*
 ** returns the current RPC cookie
-** RPC cookie is regenerated at every particld startup
+** RPC cookie is regenerated at every bitgreend startup
 */
 function getAuth(options) {
 

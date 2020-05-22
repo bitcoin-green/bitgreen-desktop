@@ -1,12 +1,12 @@
 {
-  "name": "particl-desktop",
+  "name": "bitgreen-desktop",
   "version": "1.3.1",
   "branch": "develop",
   "license": "GPL-2.0",
-  "description": "Particl Desktop - decentralized marketplace, private currency, messaging & self-governance",
-  "homepage": "https://particl.io",
+  "description": "Bitgreen Desktop - decentralized marketplace, private currency, messaging & self-governance",
+  "homepage": "https://bitgreen.io",
   "keywords": [
-    "particl",
+    "bitgreen",
     "angular2",
     "angular4",
     "angular5",
@@ -15,7 +15,7 @@
     "webpack",
     "typescript"
   ],
-  "author": "Particl contributors",
+  "author": "Bitgreen contributors",
   "main": "main.js",
   "scripts": {
     "ng": "ng",
@@ -48,10 +48,10 @@
     "travis:test": "ng test --single-run --code-coverage",
     "start": "yarn run start:mainnet"
   },
-  "productName": "particl-desktop",
+  "productName": "bitgreen-desktop",
   "build": {
     "electronVersion": "4.0.3",
-    "appId": "io.particl.desktop",
+    "appId": "io.bitgreen.desktop",
     "npmRebuild": true,
     "directories": {
       "buildResources": "resources",
@@ -107,9 +107,9 @@
       ]
     },
     "linux": {
-      "maintainer": "particl contributors <hello@particl.io>",
+      "maintainer": "bitgreen contributors <hello@bitgreen.io>",
       "artifactName": "${name}-${version}-${os}-${arch}.${ext}",
-      "executableName": "particl-desktop",
+      "executableName": "bitgreen-desktop",
       "target": [
         {
           "target": "deb",
@@ -125,10 +125,10 @@
         }
       ],
       "desktop": {
-        "Comment": "Particl, P2P Privacy ecosystem",
-        "Icon": "particl-desktop",
-        "Name": "Particl Desktop",
-        "Path": "/opt/particl-desktop",
+        "Comment": "Bitgreen, P2P Privacy ecosystem",
+        "Icon": "bitgreen-desktop",
+        "Name": "Bitgreen Desktop",
+        "Path": "/opt/bitgreen-desktop",
         "StartupNotify": "true",
         "Terminal": "false",
         "Type": "Application",
