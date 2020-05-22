@@ -5,14 +5,14 @@ const log         = require('electron-log');
 const options    = require('../options').get();
 const removeWalletAuthentication = require('../webrequest/http-auth').removeWalletAuthentication;
 /*
-** returns Bitgreen config folder
+** returns BitGreen config folder
 */
-function getDefaultBitgreenCorePath() {
+function getDefaultBitGreenCorePath() {
 
   let homeDir = os.homedir ? os.homedir() : process.env['HOME'];
 
   let dir,
-      appName = 'Bitgreen';
+      appName = 'BitGreen';
   switch (process.platform) {
     case 'linux': {
       dir = prepareDir(homeDir, '.' + appName.toLowerCase()).result;
@@ -39,7 +39,7 @@ function getDefaultBitgreenCorePath() {
 }
 
 function getCookieFilePath() {
-  let dataDir = options.datadir ? options.datadir : getDefaultBitgreenCorePath();
+  let dataDir = options.datadir ? options.datadir : getDefaultBitGreenCorePath();
   const COOKIE_FILE = dataDir
                     + (options.testnet ? '/testnet' : '')
                     + '/.cookie';

@@ -8,7 +8,7 @@ exports.init = function () {
 
   log.transports.file.appName = process.platform == 'linux'
     ? 'bitgreen-desktop'
-    : 'Bitgreen Desktop';
+    : 'BitGreen Desktop';
   let logPath = options.testnet
     ? 'bitgreen-desktop-testnet.log'
     : 'bitgreen-desktop.log';

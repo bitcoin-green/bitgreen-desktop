@@ -99,7 +99,7 @@ var getAssetDetails = function (asset, hashes, version) {
       commands: {
         sanity: {
           args: ["-version"],
-          output: ["Bitgreen Core Daemon", version]
+          output: ["BitGreen Core Daemon", version]
         }
       }
     }
@@ -135,7 +135,7 @@ var getHashesForPlatform = function (platform, path, hashes) {
 
 /*
  * Entry point
- * get Bitgreen latest release files
+ * get BitGreen latest release files
  */
 got(`${releasesURL}`).then(response => {
   const body = JSON.parse(response.body);

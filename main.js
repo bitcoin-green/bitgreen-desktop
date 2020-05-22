@@ -209,7 +209,7 @@ function makeTray() {
           click() { electron.shell.openExternal('https://bitgreen.io/#about'); }
         },
         {
-          label: 'Visit Bitgreen.io',
+          label: 'Visit BitGreen.io',
           click() { electron.shell.openExternal('https://bitgreen.io'); }
         },
         {
@@ -229,7 +229,7 @@ function makeTray() {
   // }
 
   // Set the tray icon
-  tray.setToolTip('Bitgreen ' + app.getVersion());
+  tray.setToolTip('BitGreen ' + app.getVersion());
   tray.setContextMenu(contextMenu)
 
   // Always show window when tray icon clicked
