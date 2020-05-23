@@ -6,5 +6,5 @@ export const environment = {
   releasesUrl: 'https://api.github.com/repos/bitgreen/bitgreen-desktop/releases/latest',
   envName: 'prod',
   bitgreenHost: 'localhost',
-  bitgreenPort: 9333
+  bitgreenPort: 9332
 };

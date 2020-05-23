@@ -10,5 +10,5 @@ export const environment = {
   version: require('../../package.json').version,
   releasesUrl: 'https://api.github.com/repos/bitgreen/bitgreen-desktop/releases/latest',
   bitgreenHost: 'localhost',
-  bitgreenPort: 51935
+  bitgreenPort: 9332
 };

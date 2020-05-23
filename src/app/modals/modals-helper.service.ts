@@ -52,7 +52,7 @@ export class ModalsHelperService implements OnDestroy {
     });
 
     /* Hook wallet initialized -> open createwallet modal */
-    this.openInitialCreateWallet();
+    //this.openInitialCreateWallet();
   }
 
   /**

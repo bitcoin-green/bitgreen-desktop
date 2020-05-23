@@ -71,41 +71,6 @@
       </mat-accordion>
     </mat-content><!-- .sidebar-section -->
 
-    <mat-content class="sidebar-section" *ngIf="walletInitialized === false">
-      <mat-accordion [multi]="'multi'">
-        <mat-expansion-panel #panel1 expanded="true" class="no-padding arrow-colored">
-          <mat-expansion-panel-header>Wallet</mat-expansion-panel-header>
-          <mat-content>
-            <mat-list class="sidebar-item-group">
-
-              <a class="sidebar-item-link"
-                routerLinkActive="active" href="javascript:void(0)"
-                (click)="createWallet()">
-                <mat-list-item class="sidebar-item">
-                  <mat-icon class="icon" fontSet="partIcon"
-                    fontIcon="part-add-account"></mat-icon>
-                  <span class="text">Add Account</span>
-                </mat-list-item>
-              </a>
-
-            </mat-list><!-- .sidebar-item-group -->
-          </mat-content>
-        </mat-expansion-panel>
-      </mat-accordion>
-    </mat-content><!-- .sidebar-section -->
-
-
-    <!-- <mat-content class="sidebar-section">
-      <mat-list class="sidebar-item-group">
-        <a class="sidebar-item-link" routerLinkActive="active" routerLink="/wallet/settings">
-          <mat-list-item class="sidebar-item">
-            <mat-icon class="icon" fontSet="partIcon" fontIcon="part-cog"></mat-icon>
-            <span class="text">Settings</span>
-          </mat-list-item>
-        </a>
-      </mat-list>
-    </mat-content> --><!-- .sidebar-section -->
-
     <footer class="pin-to-bottom">
 
       <mat-content *ngIf="!daemonRunning || !walletInitialized">
@@ -146,7 +111,7 @@
           <mat-list-item class="sidebar-item"
             *ngIf="walletInitialized === false && daemonRunning">
             <mat-icon class="icon" fontSet="partIcon" fontIcon="part-alert"></mat-icon>
-            <span class="text">Please create wallet first to access other tabs</span>
+            <span class="text">Wallet loading...</span>
           </mat-list-item>
 
         </mat-list><!-- .error.sidebar-item-group -->

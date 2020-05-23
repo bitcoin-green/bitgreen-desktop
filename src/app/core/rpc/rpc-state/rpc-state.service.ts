@@ -135,12 +135,6 @@ export class RpcStateService extends StateService implements OnDestroy {
   // TODO: get rid of this after improve-router
   private initWalletState() {
     this.observe('getwalletinfo').subscribe(response => {
-      // check if account is active
-      if (!!response.hdmasterkeyid) {
-        this.set('ui:walletInitialized', true);
-      } else {
-        this.set('ui:walletInitialized', false);
-      }
     }, error => this.log.er('RPC Call returned an error', error));
 }
 }

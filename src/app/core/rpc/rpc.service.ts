@@ -8,8 +8,8 @@ import { map, catchError } from 'rxjs/operators';
 import { IpcService } from '../ipc/ipc.service';
 import { environment } from '../../../environments/environment';
 
-const MAINNET_PORT = 9333;
-const TESTNET_PORT = 19333;
+const MAINNET_PORT = 9332;
+const TESTNET_PORT = 19332;
 const HOSTNAME = 'localhost';
 
 declare global {
@@ -37,7 +37,7 @@ export class RpcService implements OnDestroy {
   private hostname: String = environment.bitgreenHost;
 
   /**
-   * Port number of of daemon (default = 51935)
+   * Port number of of daemon (default = 9332)
    */
   // private port: number = TESTNET_PORT; // TODO: Mainnet / testnet flag...
   private port: number = environment.bitgreenPort;

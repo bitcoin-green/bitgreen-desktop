@@ -50,22 +50,6 @@ export class EncryptwalletComponent {
       return;
     }
 
-    // passwords match, encrypt wallet
-
-    if (window.electron) {
-      this._daemon.restart().then(res => {
-        this.log.d('restart was trigger, open create wallet again');
-        if (!this._modals.initializedWallet) {
-          this._rpcState.observe('getwalletinfo').skip(1).take(1).subscribe(wallet => {
-            this.pleaseWait = false;
-            this._modals.createWallet();
-            this._dialogRef.close();
-          });
-
-        }
-      });
-    }
-
     this._rpc.call('encryptwallet', [password.password]).toPromise()
       .then((s) => this.pleaseWait = true)
       .catch(error => {

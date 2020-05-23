@@ -16,6 +16,7 @@ import { TransactionService } from '../transaction.service';
 
 export class TransactionsTableComponent implements OnInit {
 
+  public walletInitialized: boolean = true;
   @Input() display: any;
   @ViewChild('paginator') paginator: any;
 
