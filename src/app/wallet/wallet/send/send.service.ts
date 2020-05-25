@@ -38,49 +38,8 @@ export class SendService {
 
   public getTransactionFee(tx: TransactionBuilder): Observable<any> {
     tx.estimateFeeOnly = true;
-    if (!tx.toAddress) {
-      return new Observable((observer) => {
-        this.getDefaultStealthAddress().take(1).subscribe(
-          (stealthAddress: string) => {
-            // set balance transfer stealth address
-            tx.toAddress = stealthAddress;
-            this.send(tx).subscribe(fee => {
-              observer.next(fee);
-              observer.complete();
-            });
-          });
-      });
-    } else {
       return this.send(tx).map(
         fee => fee);
-    }
-  }
-
-  public transferBalance(tx: TransactionBuilder) {
-    tx.estimateFeeOnly = false;
-
-    // get default stealth address
-    this.getDefaultStealthAddress().take(1).subscribe(
-      (stealthAddress: string) => {
-        this.log.d('got transferBalance, sx' + stealthAddress);
-        tx.toAddress = stealthAddress;
-
-        // execute transaction
-        this.send(tx).subscribe(
-          success => this.rpc_send_success(success, stealthAddress, tx.amount),
-          error => this.rpc_send_failed(error.message, stealthAddress, tx.amount));
-      },
-      error => this.rpc_send_failed('transferBalance, Failed to get stealth address')
-    );
-
-  }
-
-  /**
-   * Retrieve the first stealth address.
-   */
-  private getDefaultStealthAddress(): Observable<string> {
-    return this._rpc.call('liststealthaddresses', null).map(
-      list => list[0]['Stealth Addresses'][0]['Address']);
   }
 
   /**

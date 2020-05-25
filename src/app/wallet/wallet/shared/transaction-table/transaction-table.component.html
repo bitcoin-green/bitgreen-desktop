@@ -35,23 +35,13 @@
       <!-- Category icon -->
       <mat-panel-title fxFlex="1 0 175px" fxFlex.lt-md="100" *ngIf="display.category" class="history_cat_icon"
                         [ngSwitch]="tx.getCategory()">
-        <span *ngSwitchCase="'stake'" class="tx-type staked">
+        <span *ngSwitchCase="'mint_by_stake'" class="tx-type staked">
           <mat-icon fontSet="partIcon" fontIcon="part-stake"></mat-icon>
           <span class="name">Staked</span>
         </span>
-        <span *ngSwitchCase="'orphaned_stake'" class="tx-type orphan">
-          <mat-icon fontSet="partIcon" fontIcon="part-alert" color="warn"></mat-icon>
-          <span class="name">Orphaned Stake</span>
-        </span>
-        <span *ngSwitchCase="'send'" class="tx-type sent">
+        <span *ngSwitchCase="'sent_to'" class="tx-type sent">
           <mat-icon fontSet="partIcon" fontIcon="part-send" color="warn"></mat-icon>
           <span class="name">Sent</span>
-          <mat-icon class="narration" *ngIf="tx.getNarration()" fontSet="partIcon" fontIcon="part-pen-1"
-                    matTooltip="{{tx.getNarration()}}" matTooltipPosition="after"></mat-icon>
-        </span>
-        <span *ngSwitchCase="'multisig'" class="tx-type sent">
-          <mat-icon fontSet="partIcon" fontIcon="part-send" color="warn"></mat-icon>
-          <span class="name">Multisig / escrow</span>
           <mat-icon class="narration" *ngIf="tx.getNarration()" fontSet="partIcon" fontIcon="part-pen-1"
                     matTooltip="{{tx.getNarration()}}" matTooltipPosition="after"></mat-icon>
         </span>
@@ -61,13 +51,17 @@
           <mat-icon class="narration" *ngIf="tx.getNarration()" fontSet="partIcon" fontIcon="part-pen-1"
                     matTooltip="{{tx.getNarration()}}" matTooltipPosition="after"></mat-icon>
         </span>
-        <span *ngSwitchCase="'internal_transfer'" class="tx-type received">
+        <span *ngSwitchCase="'payment_to_yourself'" class="tx-type received">
           <mat-icon fontSet="partIcon" fontIcon="part-transfer" color="primary"></mat-icon>
           <span class="name">Balance transfer</span>
         </span>
-        <span *ngSwitchCase="'listing_fee'" class="tx-type sent">
-          <mat-icon fontSet="partIcon" fontIcon="part-send" color="primary"></mat-icon>
-          <span class="name">Posted Listing</span>
+        <span *ngSwitchCase="'mined'" class="tx-type staked">
+          <mat-icon fontSet="partIcon" fontIcon="part-stake"></mat-icon>
+          <span class="name">Mined</span>
+        </span>
+        <span *ngSwitchCase="'masternode_reward'" class="tx-type staked">
+          <mat-icon fontSet="partIcon" fontIcon="part-stake"></mat-icon>
+          <span class="name">Masternode Reward</span>
         </span>
       </mat-panel-title>
 

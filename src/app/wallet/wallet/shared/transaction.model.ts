@@ -3,14 +3,12 @@ import { AddressType } from './address.model';
 
 export type TransactionCategory =
     'all'
-    | 'stake'
-    | 'coinbase'
-    | 'send'
     | 'receive'
-    | 'orphaned_stake'
-    | 'internal_transfer'
-    | 'multisig'
-    | 'listing_fee';
+    | 'sent_to'
+    | 'payment_to_yourself'
+    | 'mined'
+    | 'mint_by_stake'
+    | 'masternode_reward';
 
 export class Transaction {
 
@@ -18,7 +16,6 @@ export class Transaction {
 
     txid: string;
     address: string ;
-    stealth_address: string;
     label: string;
     category: TransactionCategory;
     amount: number;
@@ -45,7 +42,6 @@ export class Transaction {
     this.txid = json.txid;
     if (json.outputs && json.outputs.length) {
       this.address = json.outputs[0].address;
-      this.stealth_address = json.outputs[0].stealth_address;
       this.label = json.outputs[0].label;
     }
     this.category = json.category;
@@ -70,39 +66,18 @@ export class Transaction {
   }
 
   public getAddress(): string {
-    if (this.stealth_address === undefined) {
       return this.address;
-    }
-    return this.stealth_address;
   }
 
   private getAddressType(): AddressType {
-    if (this.stealth_address === undefined) {
       if (this.address && this.address.startsWith('r')) {
         return AddressType.MULTISIG;
       }
       return AddressType.NORMAL;
-    } else {
-      return AddressType.STEALTH;
-    }
-  }
-
-  public isMultiSig(): boolean {
-    return this.getAddressType() === AddressType.MULTISIG;
-  }
-
-  public isListingFee(): boolean {
-    return this.category === 'internal_transfer' && this.outputs.length === 0;
   }
 
   getCategory(): TransactionCategory {
-    if (this.isMultiSig()) {
-      return 'multisig';
-    } else if (this.isListingFee()) {
-      return 'listing_fee'
-    } else {
       return this.category;
-    }
   }
 
   public getExpandedTransactionID(): string {
@@ -120,37 +95,7 @@ export class Transaction {
 
   /* Amount stuff */
   public getAmount(): number {
-   if (this.getCategory() === 'internal_transfer') {
-      // add all elements in output array ( but exclude vout === 65535)
-      // todo: check assumption that we own all outputs?
-      /*
-      const add = function (a: any, b: any) { return a + (b.vout === 65535 ? 0 : b.amount); }
-      return this.outputs.reduce(add, 0);
-      */
-
-/*
-      const blindStealthOutputCount = this.outputs.reduce(function (a: any, b: any) {
-        return a + (b.vout !== 65535 ? (b.stealth_address !== undefined ? 1 : 0) : 0);
-      }, 0);
-      console.log("blind_stealth_address count: " + blindStealthOutputCount);
-
-      // blind -> blind (own)
-      if(blindStealthOutputCount === 1) {
-        console.log("length should equal 2 =" + this.outputs.length);
-        const add = function (a: any, b: any) { return a + (b.stealth_address !== undefined ? b.amount : 0); }
-        console.log("returning shoud be 0.5 =  " + this.outputs.reduce(add, 0));
-        return this.outputs.reduce(add, 0);
-      } */
-
-      // only use fake output to determine internal transfer
-      const fakeOutput = function (a: any, b: any) { return a - (b.vout === 65535 ? b.amount : 0); }
-      return this.outputs.reduce(fakeOutput, 0);
-    } else if (this.getCategory() === 'multisig') {
-      const amount: number = this.outputs.find(output => output.address.startsWith('r')).amount;
-      return amount;
-    } else {
       return +this.amount;
-    }
   }
 
   /** Turns amount into an Amount Object */

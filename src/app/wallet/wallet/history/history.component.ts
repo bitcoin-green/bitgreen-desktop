@@ -12,10 +12,12 @@ export class HistoryComponent implements OnInit {
 
   categories: Array<any> = [
     { title: 'All transactions',   value: 'all',               icon: ''},
-    { title: 'Sent',               value: 'send',              icon: 'send'},
+    { title: 'Sent',               value: 'sent_to',              icon: 'send'},
     { title: 'Received',           value: 'receive',           icon: 'receive'},
-    { title: 'Staked',             value: 'stake',             icon: 'stake'},
-    { title: 'Balance Transfers',  value: 'internal_transfer', icon: 'transfer'},
+    { title: 'Staked',             value: 'mint_by_stake',             icon: 'stake'},
+    { title: 'Mined',  value: 'mined', icon: 'transfer'},
+    { title: 'Masternode Reward',  value: 'masternode_reward', icon: 'transfer'},
+    { title: 'Balance Transfers',  value: 'payment_to_yourself', icon: 'transfer'},
     // { title: 'Immature',         value: 'immature'          },
     // { title: 'Coinbase',         value: 'coinbase'          },
     // { title: 'Orphan',           value: 'orphan'            },
@@ -34,8 +36,6 @@ export class HistoryComponent implements OnInit {
   types: Array<any> = [
     { title: 'All types', value: 'all'      },
     { title: 'Public',  value: 'standard'   },
-    { title: 'Blind',     value: 'blind'    },
-    { title: 'Anonymous', value: 'anon'     },
   ];
 
   filters: any = {

@@ -7,12 +7,6 @@
           Public address
         </ng-template>
       </mat-tab>
-      <mat-tab>
-        <ng-template mat-tab-label>
-          <mat-icon fontSet="partIcon" fontIcon="part-anon"></mat-icon>
-          Private address
-        </ng-template>
-      </mat-tab>
     </mat-tab-group>
   </div>
 </app-header>
@@ -38,7 +32,6 @@
         <!-- Address type (public/private)-->
         <div class="address-type">
           <mat-icon *ngIf="getAddressType() === 'public'" fontSet="partIcon" fontIcon="part-public"></mat-icon>
-          <mat-icon *ngIf="getAddressType() === 'private'" fontSet="partIcon" fontIcon="part-anon"></mat-icon>
           {{ getAddressType() }} address #{{ selected?.id }}
         </div>
 
@@ -78,9 +71,6 @@
 
         <p class="widget-help" *ngIf="getAddressType() === 'public'">
           This is your public address &ndash; its balance and transaction history is publicly visible on blockchain. If you would like to increase your privacy, use Private address instead.
-        </p>
-        <p class="widget-help" *ngIf="getAddressType() === 'private'">
-          This is your private address &ndash; its balance and transaction history is hidden for public on blockchain. For auditable addresses, use Public addresses instead.
         </p>
 
       </div><!-- .main -->

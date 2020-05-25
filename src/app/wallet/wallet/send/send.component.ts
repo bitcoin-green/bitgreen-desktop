@@ -71,11 +71,6 @@ export class SendComponent implements OnInit {
     this.type = (tabIndex) ? 'balanceTransfer' : 'sendPayment';
     this.send.input = TxType.PUBLIC;
     this.send.output = TxType.PUBLIC;
-    if (this.type === 'balanceTransfer') {
-      this.send.toAddress = '';
-      this.send.output = TxType.BLIND;
-      this.verifyAddress();
-    }
     this.updateAmount();
   }
 
@@ -90,23 +85,11 @@ export class SendComponent implements OnInit {
     return this._rpcState.get('getwalletinfo')[balance];
   }
 
-  checkBalance(account: TxType): boolean {
-    if (account === TxType.BLIND) {
-      return parseFloat(this.getBalanceString(account)) < 0.0001 && parseFloat(this.getBalanceString(account)) > 0;
-    }
-  }
-
   private txTypeToBalanceType(type: TxType): string {
     let r: string;
     switch (type) {
       case TxType.PUBLIC:
         r = 'balance';
-        break;
-      case TxType.BLIND:
-        r = 'blind_balance';
-        break;
-      case TxType.ANON:
-        r = 'anon_balance';
         break;
     }
     return r;
@@ -221,12 +204,6 @@ export class SendComponent implements OnInit {
       // pub->pub, blind->blind, priv-> priv
       this.send.output = this.send.input;
 
-      // Check if stealth address if output is private
-      if (this.send.output === TxType.ANON && !this.addressHelper.testAddress(this.send.toAddress, 'private')) {
-        this.flashNotification.open('Stealth address required for private transactions!');
-        return;
-      }
-
     // Balance transfer - validation
     } else if (this.type === 'balanceTransfer') {
 
@@ -247,15 +224,10 @@ export class SendComponent implements OnInit {
   }
 
   private sendTransaction(): void {
-    if (this.type === 'sendPayment') {
       // edit label of address
       this.addLabelToAddress();
 
       this.sendService.sendTransaction(this.send);
-    } else {
-
-      this.sendService.transferBalance(this.send);
-    }
     this.setFormDefaultValue();
   }
   /*
@@ -266,8 +238,7 @@ export class SendComponent implements OnInit {
     const d = this.dialog.open(AddressLookupComponent);
     const dc = d.componentInstance;
     dc.type = (this.type === 'balanceTransfer') ? 'receive' : 'send';
-    dc.filter = (
-      [TxType.ANON, TxType.BLIND].includes(this.send.input) ? 'Private' : 'All types');
+    dc.filter = ('All types');
     dc.selectAddressCallback.subscribe((response: AddressLookUpCopy) => {
       this.selectAddress(response);
       d.close();

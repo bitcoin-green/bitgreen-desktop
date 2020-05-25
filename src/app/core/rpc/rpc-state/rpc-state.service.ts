@@ -23,7 +23,7 @@ export class RpcStateService extends StateService implements OnDestroy {
     this.register('getwalletinfo', 1000);
     this.register('getblockchaininfo', 5000);
     this.register('getnetworkinfo', 10000);
-    this.register('getstakinginfo', 10000);
+    this.register('getstakingstatus', 10000);
 
     // TODO: get rid of these
     this.walletLockedState();
@@ -135,6 +135,7 @@ export class RpcStateService extends StateService implements OnDestroy {
   // TODO: get rid of this after improve-router
   private initWalletState() {
     this.observe('getwalletinfo').subscribe(response => {
+      this.set('ui:walletInitialized', true);
     }, error => this.log.er('RPC Call returned an error', error));
 }
 }

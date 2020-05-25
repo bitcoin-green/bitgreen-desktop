@@ -55,11 +55,6 @@ export class PassphraseService {
   }
 
   generateDefaultAddresses() {
-    /* generate balance transfer address (stealth)*/
-    this._rpc.call('getnewstealthaddress', ['balance transfer']).subscribe(
-      (response: any) => this.log.i('generateDefaultAddresses(): generated balance transfer address'),
-      error => this.log.er('generateDefaultAddresses: getnewstealthaddress failed'));
-
     /* generate initial public address */
     this._rpc.call('getnewaddress', ['initial address']).subscribe(
       (response: any) => this.log.i('generateDefaultAddresses(): generated initial address'),

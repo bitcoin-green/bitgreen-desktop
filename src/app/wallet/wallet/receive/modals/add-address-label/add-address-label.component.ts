@@ -50,7 +50,7 @@ export class AddAddressLabelComponent implements OnInit {
   }
 
   addNewLabel(): void {
-    let call = (this.type === 'public' ? 'getnewaddress' : (this.type === 'private' ? 'getnewstealthaddress' : ''));
+    let call = ('getnewaddress');
     let callParams = [this.label];
     let msg = `New ${this.type} address generated, with label ${this.label}!`;
     if (this.address !== '') {

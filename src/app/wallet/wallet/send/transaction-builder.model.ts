@@ -1,7 +1,5 @@
 export enum TxType {
-  PUBLIC = 'part',
-  BLIND = 'blind',
-  ANON = 'anon'
+  PUBLIC = 'part'
 }
 
 export class TransactionBuilder {

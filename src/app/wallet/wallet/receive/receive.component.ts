@@ -37,7 +37,6 @@ export class ReceiveComponent implements OnInit {
 
   /* UI Pagination */
   addresses: any = {
-    private: [],
     public: [],
     query: []
   };
@@ -149,7 +148,7 @@ export class ReceiveComponent implements OnInit {
     * @param type Address type to set
     */
   setAddressType(type: string): void {
-    if (['public', 'private'].includes(type)) {
+    if (['public'].includes(type)) {
       this.type = type;
     }
     /* @TODO: can be removed */
@@ -163,11 +162,7 @@ export class ReceiveComponent implements OnInit {
   changeTab(tab: number): void {
     this.page = 1;
     this.exitLabelEditingMode();
-    if (tab) {
-      this.setAddressType('private');
-    } else {
       this.setAddressType('public');
-    }
   }
 
   getAddressType(): string {
@@ -255,13 +250,7 @@ export class ReceiveComponent implements OnInit {
       this.addresses.public = [];
     }
 
-    if (priv.length > 0) {
-      this.addresses.private = [];
-    }
-
     pub .forEach((val) => this.addAddress(val, 'public'));
-    priv.forEach((val) => this.addAddress(val, 'private'));
-
     if (!!response[0]) {
       this.sortArrays();
 
@@ -295,27 +284,11 @@ export class ReceiveComponent implements OnInit {
 
     tempAddress.readable = tempAddress.address.match(/.{1,4}/g);
 
-    if (type === 'public') {
-
       // not all addresses are derived from HD wallet (importprivkey)
       if (!!response.path) {
         tempAddress.id = response.path.replace('m/0/', '');
       }
       this.addresses.public.unshift(tempAddress);
-
-    } else if (type === 'private') {
-
-      // not all stealth addresses are derived from HD wallet (importprivkey)
-      if (response.path !== undefined) {
-        tempAddress.id = +(response.path.replace('m/0\'/', '').replace('\'', '')) / 2;
-
-        // filter out accounts m/1 m/2 etc. stealth addresses are always m/0'/0'
-        if (/m\/[0-9]+/g.test(response.path) && !/m\/[0-9]+'\/[0-9]+/g.test(response.path)) {
-          return;
-        }
-      }
-      this.addresses.private.unshift(tempAddress);
-    }
   }
 
   /** Sorts the private/public address by id (= HD wallet path m/0/0 < m/0/1) */
@@ -373,7 +346,7 @@ export class ReceiveComponent implements OnInit {
   }
 
   newAddress() {
-    const call = (this.type === 'public' ? 'getnewaddress' : (this.type === 'private' ? 'getnewstealthaddress' : ''));
+    const call = ('getnewaddress');
     const callParams = ['(No label)'];
     const msg = `New ${this.type} address generated`;
     this.rpcCallAndNotify(call, callParams, msg);
