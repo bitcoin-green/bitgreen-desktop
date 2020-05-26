@@ -69,13 +69,6 @@ export class Transaction {
       return this.address;
   }
 
-  private getAddressType(): AddressType {
-      if (this.address && this.address.startsWith('r')) {
-        return AddressType.MULTISIG;
-      }
-      return AddressType.NORMAL;
-  }
-
   getCategory(): TransactionCategory {
       return this.category;
   }

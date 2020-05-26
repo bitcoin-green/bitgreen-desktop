@@ -175,18 +175,10 @@ export class Duration {
 
 export class AddressHelper {
   addressPublicRegex: RegExp = /^[pPrR25][a-km-zA-HJ-NP-Z1-9]{25,52}$/;
-  addressPrivateRegex: RegExp = /^[Tt][a-km-zA-HJ-NP-Z1-9]{60,}$/
   addressBothRegex: RegExp = /^[pPrR25tT][a-km-zA-HJ-NP-Z1-9]{25,}$/;
 
   testAddress(address: string, type?: string): boolean {
-    return this[(type ? type === 'public'
-    ? 'addressPublicRegex' : 'addressPrivateRegex' : 'addressBothRegex')].test(address);
-  }
-
-  getAddressType(address: string): string {
-    return (this.testAddress(address) ?
-      (this.testAddress(address, 'public') ? 'public' : 'private') :
-      '');
+    return this[('addressPublicRegex')].test(address);
   }
 
   getAddress(address: string): string {

@@ -4,7 +4,7 @@
   "branch": "develop",
   "license": "GPL-2.0",
   "description": "Bitgreen Desktop - decentralized marketplace, private currency, messaging & self-governance",
-  "homepage": "https://bitgreen.io",
+  "homepage": "https://bitg.org",
   "keywords": [
     "bitgreen",
     "angular2",
@@ -107,7 +107,7 @@
       ]
     },
     "linux": {
-      "maintainer": "bitgreen contributors <hello@bitgreen.io>",
+      "maintainer": "bitgreen contributors <hello@bitg.org>",
       "artifactName": "${name}-${version}-${os}-${arch}.${ext}",
       "executableName": "bitgreen-desktop",
       "target": [

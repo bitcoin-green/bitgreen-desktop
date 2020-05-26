@@ -18,6 +18,7 @@ import { SnackbarService } from '../../../core/snackbar/snackbar.service';
 export class ReceiveComponent implements OnInit {
 
   @ViewChild('paginator') paginator: any;
+  @ViewChild('scroll') scrollContainer: any;
 
   log: any = Log.create('receive.component');
 
@@ -34,6 +35,7 @@ export class ReceiveComponent implements OnInit {
   initialized: boolean = false; /* true => checkUnusedAddress is already looping */
   selected: any;
   page: number = 1;
+  showOldAddress: boolean = false;
 
   /* UI Pagination */
   addresses: any = {
@@ -161,12 +163,9 @@ export class ReceiveComponent implements OnInit {
 
   changeTab(tab: number): void {
     this.page = 1;
+    this.showOldAddress = false;
     this.exitLabelEditingMode();
       this.setAddressType('public');
-  }
-
-  getAddressType(): string {
-    return this.type;
   }
 
   /**
@@ -296,7 +295,6 @@ export class ReceiveComponent implements OnInit {
     const compare = (a, b) => b.id - a.id;
 
     this.addresses.public.sort(compare);
-    this.addresses.private.sort(compare);
   }
 
 
@@ -339,6 +337,16 @@ export class ReceiveComponent implements OnInit {
   updateLabel(address: string) {
     this.address = address
     this.modals.unlock({timeout: 3}, (status) => this.editLabel());
+  }
+
+  toggleAddresses(): void {
+    this.showOldAddress = !this.showOldAddress;
+    if (this.showOldAddress) {
+      // Should be removed ?
+      setTimeout(() => {
+        this.scrollContainer.nativeElement.scrollIntoView(true);
+      }, 0)
+    }
   }
 
   generateAddress(): void {

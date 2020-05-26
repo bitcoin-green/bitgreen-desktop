@@ -28,7 +28,7 @@ export class AddressLookupComponent implements OnInit {
   private addressHelper: AddressHelper;
 
   public type: string = 'send';
-  public addressTypes: Array<string> = ['All types', 'Public', 'Private'];
+  public addressTypes: Array<string> = ['All types', 'Public'];
 
   private _addressCount: number;
   addressLookups: Contact[] = [];
@@ -54,7 +54,7 @@ export class AddressLookupComponent implements OnInit {
     this.searchResult = this.addressLookups.filter(el => (
         (  el.getLabel().toLowerCase().indexOf(query.toLowerCase()) !== -1
         || el.getAddress().toLowerCase().indexOf(query.toLowerCase()) !== -1)
-        && ((this.filter === this.cheatPublicAddress(el.getAddress()))
+        && ((this.filter === 'Public')
         || (this.filter === 'All types'))
       )
     );
@@ -78,11 +78,6 @@ export class AddressLookupComponent implements OnInit {
     return !!this.query;
   }
 
-  // needs to change..
-  cheatPublicAddress(address: string): string {
-    return address.length > 35 ? 'Private' : 'Public';
-  }
-
   show(): void {
     this.rpc_update();
   }
@@ -92,21 +87,15 @@ export class AddressLookupComponent implements OnInit {
       .subscribe(
         (response: any) => {
           let typeInt: string;
-          if (this.type === 'send') {
             typeInt = '2';
             this._addressCount = response.num_send;
-          } else {
-            this.filter = 'Private';
-            typeInt = '1';
-            this._addressCount = response.num_receive;
-          }
           if (this._addressCount > 0) {
             this._rpc.call('filteraddresses', [0, this._addressCount, '0', '', typeInt])
               .subscribe(
                 (success: any) => {
                   this.addressLookups = [];
                   success.forEach((contact) => {
-                    if (this.type === 'send' || this.addressHelper.testAddress(contact.address, 'private')) {
+                    if (this.type === 'send') {
                       this.addressLookups.push(new Contact(contact.label, contact.address));
                     } else if (this.type === 'sign' && this.addressHelper.testAddress(contact.address, 'public') && contact.owned) {
                       this.filter = 'Public';

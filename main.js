@@ -206,11 +206,11 @@ function makeTray() {
       submenu: [
         {
           label: 'About ' + app.getName(),
-          click() { electron.shell.openExternal('https://bitgreen.io/#about'); }
+          click() { electron.shell.openExternal('https://bitg.org/#about'); }
         },
         {
-          label: 'Visit BitGreen.io',
-          click() { electron.shell.openExternal('https://bitgreen.io'); }
+          label: 'Visit bitg.org',
+          click() { electron.shell.openExternal('https://bitg.org'); }
         },
         {
           label: 'Visit Electron',
