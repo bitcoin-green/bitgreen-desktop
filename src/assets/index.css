@@ -41,9 +41,8 @@ $radius: 4px; // default border-radius
 }
 
 .logo {
-  width: 240px;
+  width: 50px;
   height: auto;
-  margin: 20px 0 40px;
 }
 
 .quote {

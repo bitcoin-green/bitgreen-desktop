@@ -12,6 +12,14 @@
   border-top: 1px solid darken($bg-black, 5%);
 }
 
+.centerSomething {
+  vertical-align: middle;
+}
+
+.navBardemoBasicUsage md-content .ext-content {
+  padding: 50px;
+  margin: 20px;
+  background-color: #FFF2E0; }
 
 // ------ SECTIONS & ITEM GROUPS ------ //
 
@@ -145,7 +153,6 @@ a.sidebar-item-link {
     display: block;
     height: 50px;
     width: 130px;
-    margin: 35px auto;
     img {
       width: 100%;
     }

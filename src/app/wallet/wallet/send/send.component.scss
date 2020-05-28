@@ -86,7 +86,7 @@
 
 app-header {
   mat-tab-group {
-    margin-top: $header-main-height;
+    margin-top: 0px;
   }
   .bottom-line { // line under tabs
     border-bottom: 1px solid $bg-shadow;
