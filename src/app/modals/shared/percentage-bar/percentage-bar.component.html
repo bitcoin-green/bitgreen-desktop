@@ -1,8 +1,10 @@
 
 <!-- Sidebar sync progress -->
 <div class="sync-progress-wrapper" *ngIf="initialized && !(syncPercentage === 100)" matTooltip="{{ syncString }}" matTooltipPosition="above">
+
   <mat-progress-bar
-    class="sync-bar dark-buffer"
+    class="sync-bar dark-buffer progress-bar-style"
+    style="vertical-align: middle;"
     [color]="'primary'"
     [bufferValue]="syncPercentage"
     [mode]="'determinate'"

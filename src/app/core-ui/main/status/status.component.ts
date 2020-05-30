@@ -53,14 +53,12 @@ export class StatusComponent implements OnInit, OnDestroy {
   }
 
   getIconNumber(): number {
-    switch (true) {
-      case this.peerListCount <= 0: return 0;
-      case this.peerListCount < 4: return 2;
-      case this.peerListCount < 8: return 3;
-      case this.peerListCount < 12: return 4;
-      case this.peerListCount < 16: return 5;
-      case this.peerListCount >= 16: return 6;
-      default: return 0;
+    if (this.peerListCount >= 16) {
+      return 100;
+    } else if (this.peerListCount < 16) {
+      return this.peerListCount * 6.25;
+    } else {
+      return 0;
     }
   }
 

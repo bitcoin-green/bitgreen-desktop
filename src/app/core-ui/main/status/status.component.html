@@ -1,9 +1,14 @@
 <div class="status-icons disable-select">
 
   <span class="status icon" matTooltip="Peers: {{ peerListCount }}">
-    <img src="assets/icons/SVG/network/peers-{{ getIconNumber() }}.svg"/>
+    <svg style="height: 20px;" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64.444 64.444"><defs>
+<linearGradient y2="0%" x2="100%" y1="0%" x1="0%" id="F1g">
+<stop stop-color="#00a519" [attr.offset]="getIconNumber()+'%'" id="F1gst1"/>
+<stop stop-color="rgba(0, 165, 25,0.302)" [attr.offset]="getIconNumber()+'%'" id="F1gst2"/>
+</linearGradient></defs>{{ getIconNumber() }}
+<g id="Mobile_Network" data-name="Mobile Network">
+<path id="Network_Holder" data-name="Network Holder" fill="url(#F1g)" class="cls-1" d="M60.918,3.723,3.042,61.523H60.918Z"/></g></svg>
   </span>
-
   <span
     class="encryption icon"
     matTooltip="{{ encryptionStatus }}"

@@ -192,7 +192,7 @@ a.sidebar-item-link {
   }
 }
 .sync-progress {
-  padding: 0 20px;
+  padding: 0 120px;
 }
 
 
@@ -224,4 +224,16 @@ a.sidebar-item-link {
   .right {
     text-align: right;
   }
+}
+
+
+.narbar-img {
+  display: block;
+  height: 25px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.narbar-lineheight {
+  line-height: 25px;
 }

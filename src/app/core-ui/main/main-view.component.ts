@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { environment } from '../../../environments/environment';
 
-import { RpcService, RpcStateService } from '../../core/core.module';
+import {BlockStatusService, RpcService, RpcStateService} from '../../core/core.module';
 import { NewTxNotifierService } from 'app/core/rpc/rpc.module';
 import { UpdaterService } from 'app/core/updater/updater.service';
 import { ModalsHelperService } from 'app/modals/modals.module';
@@ -27,11 +27,19 @@ export class MainViewComponent implements OnInit, OnDestroy {
 
   log: any = Log.create('main-view.component');
   private destroyed: boolean = false;
+  public syncPercentage: number = 0;
+
+  /* ui state */
+  public initialized: boolean = false; // hide if no progress has been retrieved yet
+
+  public syncString: string;
 
   /* UI States */
 
   title: string = '';
   testnet: boolean = false;
+  checked = false;
+  peerListCount: number = 0;
   /* errors */
   walletInitialized: boolean = undefined;
   daemonRunning: boolean = undefined;
@@ -53,7 +61,8 @@ export class MainViewComponent implements OnInit, OnDestroy {
     private dialog: MatDialog,
     // the following imports are just 'hooks' to
     // get the singleton up and running
-    private _newtxnotifier: NewTxNotifierService
+    private _newtxnotifier: NewTxNotifierService,
+    private _blockStatusService: BlockStatusService
   ) { }
 
   ngOnInit() {
@@ -117,6 +126,15 @@ export class MainViewComponent implements OnInit, OnDestroy {
     this._rpcState.observe('getblockchaininfo', 'chain').take(1)
       .subscribe(chain => this.testnet = chain === 'test');
 
+    this._blockStatusService.statusUpdates.asObservable().subscribe(status => {
+      this.log.d(`updating percentage-bar`);
+      this.updateProgress(status.syncPercentage);
+    });
+
+    this._rpcState.observe('getnetworkinfo', 'connections')
+      .takeWhile(() => !this.destroyed)
+      .subscribe(connections => this.peerListCount = connections);
+
   }
 
   ngOnDestroy() {
@@ -125,6 +143,16 @@ export class MainViewComponent implements OnInit, OnDestroy {
   /** Open createwallet modal when clicking on error in sidenav */
   createWallet() {
     this._modalsService.createWallet();
+  }
+
+  getIconNumber(): number {
+    if (this.peerListCount >= 16) {
+      return 100;
+    } else if (this.peerListCount < 16) {
+      return this.peerListCount * 6.25;
+    } else {
+      return 0;
+    }
   }
 
   /** Open syncingdialog modal when clicking on progresbar in sidenav */
@@ -166,6 +194,20 @@ export class MainViewComponent implements OnInit, OnDestroy {
       document.execCommand('Paste');
       event.preventDefault();
     }
+  }
+
+  /**
+   * Update sync progress
+   * @param {number} number  The sync percentage
+   */
+  // @TODO create sparate component to display process
+  updateProgress(progress: number): void {
+    this.log.d('updateProgress', progress);
+    this.initialized = true;
+    this.syncPercentage = progress;
+    this.syncString = progress === 100
+      ? 'Fully synced'
+      : `${progress.toFixed(2)} %`
   }
 
 }

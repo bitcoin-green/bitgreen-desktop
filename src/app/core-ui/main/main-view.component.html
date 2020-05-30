@@ -2,24 +2,73 @@
   <mat-toolbar color="white">
     <mat-toolbar-row style="height:auto !important;">
       <div class="logo-area">
-        <div class="logo">
           <a [routerLink]="'/wallet/overview'">
-            <img src="./assets/bitgreen-logo-symbol{{testnet ? '-testnet' : ''}}.svg"
+            <img style="height:50px" src="./assets/bitgreen-logo-symbol{{testnet ? '-testnet' : ''}}.svg"
                  alt="Bitgreen">
           </a>
-        </div>
+      </div>
+      <div>
+          <span class="status icon" matTooltip="Peers: {{ peerListCount }}">
+    <svg style="height: 20px; vertical-align: bottom;" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64.444 64.444"><defs>
+<linearGradient y2="0%" x2="100%" y1="0%" x1="0%" id="F1g">
+<stop stop-color="#00a519" [attr.offset]="getIconNumber()+'%'" id="F1gst1"/>
+<stop stop-color="rgba(0, 165, 25,0.302)" [attr.offset]="getIconNumber()+'%'" id="F1gst2"/>
+</linearGradient></defs>{{ getIconNumber() }}
+      <g id="Mobile_Network" data-name="Mobile Network">
+<path id="Network_Holder" data-name="Network Holder" fill="url(#F1g)" class="cls-1" d="M60.918,3.723,3.042,61.523H60.918Z"/></g></svg>
+  </span>
+      </div>
+      <div>
+        <mat-slide-toggle
+          class="example-margin"
+          color="None"
+          [checked]="checked">
+        </mat-slide-toggle>
+
       </div>
       <span class="menu-spacer"></span>
       <div>
-        <a mat-button [routerLink]="'/wallet/send'"> Send </a>
-        <a mat-button [routerLink]="'/wallet/receive'"> Receive </a>
-        <a mat-button [routerLink]="'/wallet/history'"> History </a>
-        <a mat-button [routerLink]="'/wallet/address-book'"> Address Book </a>
+        <a class="narbar-lineheight" mat-button [routerLink]="'/wallet/send'">
+          <img class="narbar-img" src="assets/icons/SVG/wallet.svg"/>
+          Send
+        </a>
+        <a class="narbar-lineheight" mat-button [routerLink]="'/wallet/receive'">
+          <img class="narbar-img" src="assets/icons/SVG/send.svg"/>
+          Receive
+        </a>
+        <a class="narbar-lineheight" mat-button [routerLink]="'/wallet/history'">
+          <img class="narbar-img" src="assets/icons/SVG/star.svg"/>
+          History
+        </a>
+        <a class="narbar-lineheight" mat-button [routerLink]="'/wallet/address-book'">
+          <img class="narbar-img" src="assets/icons/SVG/users.svg"/>
+          Address Book
+        </a>
+        <a class="narbar-lineheight" mat-button [routerLink]="'/wallet/address-book'">
+          <img class="narbar-img" src="assets/icons/SVG/chart.svg"/>
+          Network
+        </a>
 
       </div>
+      <span style="flex: 1 1 auto;"></span>
+      <div class="status-icons disable-select">
+
+  <span class="icon" matTooltip="">
+    <img src="assets/icons/SVG/search.svg"/>
+  </span>
+        <span class="icon" matTooltip="">
+    <img src="assets/icons/SVG/settings.svg"/>
+  </span>
+        <span class="icon" matTooltip="">
+    <img src="assets/icons/SVG/help.svg"/>
+  </span>
+
+
+      </div><!-- .status-icons -->
     </mat-toolbar-row>
 
     <mat-toolbar-row style="height: 26px !important; background-color: rgba(0, 139, 21, 0.15);" >
+      <div>
       <span style="font-size: 12px;">
         <img class="centerSomething" src="./assets/icons/SVG/history-black.svg">
         <span class="centerSomething" > Wallet </span>
@@ -28,12 +77,18 @@
         <img class="centerSomething" src="./assets/icons/SVG/navigate_before.svg">
         <span class="centerSomething" > Participate </span>
       </span>
+      </div>
       <span style="flex: 1 1 auto;"></span>
+      <div *ngIf="initialized && !(syncPercentage === 100)">
+        <span style="font-size: 12px; vertical-align: middle; padding-right: 5px;"> Synchronizing </span>
+      </div>
+      <div>
         <!-- Sync progress -->
       <mat-content class="sync-progress cursor-pointer" (click)="syncScreen()">
         <!-- reused from syncing dialog -->
         <app-percentage-bar #progress></app-percentage-bar>
       </mat-content>
+      </div>
 
     </mat-toolbar-row>
   </mat-toolbar><!-- .sidebar -->
