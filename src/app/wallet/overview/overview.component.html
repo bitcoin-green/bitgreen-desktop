@@ -1,105 +1,401 @@
-<mat-card class="balance-overview">
-  <div class="total balance-item">
-    <app-balance type="total_balance"></app-balance>
-  </div>
-  <div class="public balance-item">
-    <app-balance type="balance"></app-balance>
-  </div>
-</mat-card>
-
-
-<div class="overview">
-  <div class="overview-content">
-    <!-- @TODO comment out the code for widget for total listing, sell orders -->
-    <!-- <div class="seller-overview TO_DO">
-      <app-header>
-        <ul class="header-nav">
-          <li>Seller overview</li>
-          li class="buttons">
-            <mat-icon class="icon" fontSet="partIcon" fontIcon="part-cog" matTooltip="Edit widget"></mat-icon>
-            <mat-icon class="icon move" fontSet="partIcon" fontIcon="part-hamburger" matTooltip="Move widget"></mat-icon>
-          </li
-        </ul>
-      </app-header>
-      <mat-card fxLayout>
-        <div class="list listings" fxFlex="1 1 50%" fxLayout>
-          <div class="total" fxFlex="1 1 40%">
-            <div class="value">3</div>
-            <div class="desc">Total<br>listings</div>
+<div style="padding-right: 15px; padding-left: 15px;">
+    <div class="row">
+      <div class="col">
+        <div class="alert" style="background-color: #FBFBFB; border-color: #E3E6E8; font-weight: 500;">
+          <div>
+            <div class="row">
+              <div class="col-4">
+                <img style="height:100px" src="./assets/icons/SVG/coin-bitg.svg"
+                     alt="Bitgreen">
+              </div>
+              <div class="col-8">
+                <div>
+                  <span style="color: #A4ADB1">Total Balance</span>
+                </div>
+                <div style="color: #263238">
+                  <span style="font-size: 22px;">6,410.00</span>
+                  <span style="float: right; top: 0.6rem; position: relative;">BITG</span>
+                </div>
+                <div style="color: #263238">
+                  <span>Available</span>
+                  <span style="float: right;">1,260.00</span>
+                </div>
+                <div style="color: #263238">
+                  <span>Unconfirmed</span>
+                  <span style="float: right;">150.00</span>
+                </div>
+                <div style="color: #263238">
+                  <span>Locked <img style="height: 12px; top: -1.15px; position: relative;" src="./assets/icons/SVG/lock.svg"></span>
+                  <span style="float: right;">5000.0</span>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="breakdown" fxFlex="1 1 60%">
-            <div class="item"><div class="value">2</div><div class="desc">Published</div></div>
-            <div class="item"><div class="value">1</div><div class="desc">Expired</div></div>
-            <div class="item"><div class="value">0</div><div class="desc">Unpublished</div></div>
+          <div>
+            <img style="height:25px" src="./assets/icons/SVG/swap_vert.svg">
+            <span style="color: #A4ADB1">Past 30 days</span>
           </div>
-        </div>.list.listings
-        <div class="list orders" fxFlex="1 1 50%" fxLayout>
-          <div class="total" fxFlex="1 1 40%">
-            <div class="value">12</div>
-            <div class="desc">Sell<br>orders</div>
+          <div>
+            <div style="color: #263238">
+              <span>Incoming</span>
+            </div>
+            <div style="color: #263238">
+              <div class="row">
+                <div class="col-10">
+                  <div>
+                    <mat-progress-bar
+                      class="sync-bar dark-buffer progress-bar-style"
+                      style="vertical-align: middle;"
+                      [color]="'primary'"
+                      [bufferValue]="10"
+                      [mode]="'determinate'"
+                      [value]="10">
+                    </mat-progress-bar>
+                  </div>
+                </div>
+                <div class="col-2">
+                  <span>1,189</span>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="breakdown" fxFlex="1 1 60%">
-            <div class="item"><div class="value">8</div><div class="desc">Bidding</div></div>
-            <div class="item"><div class="value">1</div><div class="desc">In escrow</div></div>
-            <div class="item"><div class="value">3</div><div class="desc">Shipped</div></div>
+          <div>
+            <div style="color: #263238">
+              <span>Outgoing</span>
+            </div>
+            <div style="color: #263238">
+              <div class="row">
+                <div class="col-10">
+                  <div>
+                    <mat-progress-bar
+                      class="sync-bar2 dark-buffer progress-bar-style"
+                      style="vertical-align: middle;"
+                      [color]="'accent'"
+                      [bufferValue]="10"
+                      [mode]="'determinate'"
+                      [value]="10">
+                    </mat-progress-bar>
+                  </div>
+                </div>
+                <div class="col-2">
+                  <span>544</span>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>.list.orders
-      </mat-card>
-    </div>.seller-overview -->
-
-    <div class="recent-transactions">
-      <app-header>
-        <ul class="header-nav">
-          <li>Recent Transactions</li>
-          <!-- TODO: uncomment when widget management is ready -->
-          <!--li class="buttons">
-            <mat-icon class="icon" fontSet="partIcon" fontIcon="part-cog" matTooltip="Edit widget"></mat-icon>
-            <mat-icon class="icon move" fontSet="partIcon" fontIcon="part-hamburger" matTooltip="Move widget"></mat-icon>
-          </li-->
-        </ul>
-      </app-header>
-      <transaction-table
-        [display]="{'txDisplayAmount': 5, 'header': false, 'internalHeader': true, 'category': true, 'confirmations': true}">
-      </transaction-table>
-    </div><!-- .recent-transactions -->
-
-  </div><!-- .overview-content -->
-
-
-  <div class="overview-sidebar">
-    <!-- @TODO comment out the code for widget for total buy orders -->
-    <!-- <div class="buy-orders TO_DO">
-      <app-header>
-        <ul class="header-nav">
-          <li>Your buy orders</li>
-          li class="buttons">
-            <mat-icon class="icon" fontSet="partIcon" fontIcon="part-cog" matTooltip="Edit widget"></mat-icon>
-            <mat-icon class="icon move" fontSet="partIcon" fontIcon="part-hamburger" matTooltip="Move widget"></mat-icon>
-          </li
-        </ul>
-      </app-header>
-      <mat-card class="list orders" fxLayout>
-        <div class="total" fxFlex="1 1 40%">
-          <div class="value">5</div>
-          <div class="desc">Buy<br>orders</div>
         </div>
-        <div class="breakdown" fxFlex="1 1 60%">
-          <div class="item"><div class="value">3</div><div class="desc">Bidding</div></div>
-          <div class="item"><div class="value">0</div><div class="desc">In escrow</div></div>
-          <div class="item"><div class="value">2</div><div class="desc">Shipped</div></div>
+
+        <span style="left: 11px;position: relative;font-weight: 500;">RECENT TRANSACTIONS</span>
+
+        <div class="list-wrapper">
+
+          <div class="red-line"></div>
+
+          <div class="list-item-wrapper">
+            <div class="list-bullet"></div>
+            <div class="list-item">
+              <div class="list-title">
+                <div class="row">
+                  <span class="col-10">GU8GzMroLBRfeejJ2snPxFfaUziQUSvSuK</span>
+                  <span class="col-2" style="color:#00A519;float: right;padding-left: 20px;">+55.0000</span>
+                </div>
+              </div>
+              <div class="list-text">
+                <img style="height: 10px" src="./assets/icons/SVG/schedule.svg">
+                <span>Today at 12:00 PM</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="list-item-wrapper">
+            <div class="list-bullet"></div>
+            <div class="list-item">
+              <div class="list-title">
+                <div class="row">
+                  <span class="col-10">GU8GzMroLBRfeejJ2snPxFfaUziQUSvSuK</span>
+                  <span class="col-2" style="color:#00A519;float: right;padding-left: 20px;">+55.0000</span>
+                </div>
+              </div>
+              <div class="list-text">
+                <img style="height: 10px" src="./assets/icons/SVG/schedule.svg">
+                <span>Today at 12:00 PM</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="list-item-wrapper">
+            <div class="list-bullet"></div>
+            <div class="list-item">
+              <div class="list-title">
+                <div class="row">
+                  <span class="col-10">GU8GzMroLBRfeejJ2snPxFfaUziQUSvSuK</span>
+                  <span class="col-2" style="color:#00A519;float: right;padding-left: 20px;">+55.0000</span>
+                </div>
+              </div>
+              <div class="list-text">
+                <img style="height: 10px" src="./assets/icons/SVG/schedule.svg">
+                <span>Today at 12:00 PM</span>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="list-item-wrapper">
+            <div class="list-bullet"></div>
+            <div class="list-item">
+              <div class="list-title">
+                <div class="row">
+                  <span class="col-10">GU8GzMroLBRfeejJ2snPxFfaUziQUSvSuK</span>
+                  <span class="col-2" style="color:#00A519;float: right;padding-left: 20px;">+55.0000</span>
+                </div>
+              </div>
+              <div class="list-text">
+                <img style="height: 10px" src="./assets/icons/SVG/schedule.svg">
+                <span>Today at 12:00 PM</span>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="list-item-wrapper">
+            <div class="list-bullet"></div>
+            <div class="list-item">
+              <div class="list-title">
+                <div class="row">
+                  <span class="col-10">GU8GzMroLBRfeejJ2snPxFfaUziQUSvSuK</span>
+                  <span class="col-2" style="color:#00A519;float: right;padding-left: 20px;">+55.0000</span>
+                </div>
+              </div>
+              <div class="list-text">
+                <img style="height: 10px" src="./assets/icons/SVG/schedule.svg">
+                <span>Today at 12:00 PM</span>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="list-item-wrapper">
+            <div class="list-bullet"></div>
+            <div class="list-item">
+              <div class="list-title">
+                <div class="row">
+                  <span class="col-10">GU8GzMroLBRfeejJ2snPxFfaUziQUSvSuK</span>
+                  <span class="col-2" style="color:#00A519;float: right;padding-left: 20px;">+55.0000</span>
+                </div>
+              </div>
+              <div class="list-text">
+                <img style="height: 10px" src="./assets/icons/SVG/schedule.svg">
+                <span>Today at 12:00 PM</span>
+              </div>
+            </div>
+          </div>
+
+
+
         </div>
-      </mat-card>.list.orders
-    </div>.buy-orders -->
+        <a href="#" class="btn btn-success" style="background-color: #00A519;font-size: 0.8rem;font-weight: 500;float:right">VIEW HISTORY</a>
 
-    <app-stakinginfo></app-stakinginfo>
 
-    <!-- TODO: uncomment when widget management is ready -->
-    <!--div class="action-buttons">
-      <button mat-button (click)="openWidgetManager()">
-        <mat-icon class="icon" fontSet="partIcon" fontIcon="part-cog"></mat-icon>
-        Manage widgets
-      </button>
-    </div--><!-- .action-buttons -->
+      </div>
+      <div class="col">
 
-  </div><!-- .overview-sidebar -->
-</div><!-- .overview-content -->
+        <span style="left: 11px;position: relative;font-weight: 500;">COMMUNITY UPDATES</span>
+        <div class="row">
+          <div class="col-6">
+            <div class="card bg-dark text-white">
+                  <div class="card-img ratio-4-3" style="background-image:url(./assets/images/placeholder_1-1.jpg)"></div>
+              <div class="card-img-overlay">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Last updated 3 mins ago</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="card bg-dark text-white">
+                  <div class="card-img ratio-4-3" style="background-image:url(./assets/images/placeholder_1-1.jpg)"></div>
+              <div class="card-img-overlay">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Last updated 3 mins ago</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card mb-3" style="max-width: 540px;">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+                <div class="card-img ratio-4-3" style="background-image:url(./assets/images/placeholder_1-1.jpg)"></div>
+            </div>
+            <div class="col-md-8">
+              <div class="card-body" style="height: 100%;">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text" style="position: absolute;bottom: 10px;"><small class="text-muted">Last updated 3 mins ago</small></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mb-3" style="max-width: 540px;">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+                  <div class="card-img ratio-4-3" style="background-image:url(./assets/images/placeholder_1-1.jpg)"></div>
+            </div>
+            <div class="col-md-8">
+              <div class="card-body" style="height: 100%;">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text" style="position: absolute;bottom: 10px;"><small class="text-muted">Last updated 3 mins ago</small></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+        <span style="left: 11px;position: relative;font-weight: 500;">LATEST FROM THE TEAM</span>
+
+        <div class="card mb-3" style="max-width: 540px;">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+                  <div class="card-img ratio-4-3" style="background-image:url(./assets/images/placeholder_1-1.jpg)"></div>
+            </div>
+            <div class="col-md-8">
+              <div class="card-body" style="height: 100%;">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text" style="position: absolute;bottom: 10px;"><small class="text-muted">Last updated 3 mins ago</small></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mb-3" style="max-width: 540px;">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+                  <div class="card-img ratio-4-3" style="background-image:url(./assets/images/placeholder_1-1.jpg)"></div>
+            </div>
+            <div class="col-md-8">
+              <div class="card-body" style="height: 100%;">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text" style="position: absolute;bottom: 10px;"><small class="text-muted">Last updated 3 mins ago</small></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="card mb-3" style="max-width: 540px;">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+                  <div class="card-img ratio-4-3" style="background-image:url(./assets/images/placeholder_1-1.jpg)"></div>
+            </div>
+            <div class="col-md-8">
+              <div class="card-body" style="height: 100%;">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text" style="position: absolute;bottom: 10px;"><small class="text-muted">Last updated 3 mins ago</small></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+      </div>
+      <div class="col">
+        <div class="card">
+          <div class="card-body" style="height: 100%;">
+            <h5 class="card-title">Participate in the BitGreen ecosystem today</h5>
+            <h6 class="card-subtitle mb-2 text-muted">There are a number of ways you can get involved and be an active member of the community.</h6>
+            <a href="#" class="btn btn-success" style="background-color: #00A519;font-size: 0.8rem;font-weight: 500;">GET INVOLVED</a>
+          </div>
+        </div>
+
+        <div class="card border-light mb-3">
+          <div class="card-header" style="background-color: #E85B5B !important;color: #FFF; padding: 0.50rem 1.25rem;">
+            <img style="height: 20px;" src="./assets/icons/SVG/lock.svg">
+            <span>SECURITY HEALTH CHECK</span>
+            <span style="float: right;">50%</span>
+          </div>
+          <div class="card-body" style="background-color: #FFF7F7 !important;">
+              <div class="row">
+                <div class="col-1">
+                  <img style="height: 20px;" src="./assets/icons/SVG/check_circle-black.svg">
+                </div>
+                <div class="col-7">
+                  <p class="card-text">Set your wallet password</p>
+                </div>
+                <div class="col">
+                  <span style="color: #A4ADB1; float:right;">DONE</span>
+                </div>
+              </div>
+            <div class="row">
+              <div class="col-1">
+                <img style="height: 20px;" src="./assets/icons/SVG/cancel.svg">
+              </div>
+              <div class="col-7">
+                <p class="card-text">Backup your wallet</p>
+                <p class="card-text"><small class="text-muted">You made a change on 03 March 2019</small></p>
+              </div>
+              <div class="col">
+                <span style="color: #00A519; float:right;">BACKUP</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="card border-light mb-3">
+          <div class="card-header" style="background-color: #F6E67F !important;color: #FFF; padding: 0.50rem 1.25rem;">
+            <img style="height: 20px; fill: #A47800" src="./assets/icons/SVG/error_outline.svg">
+            <span style="color: #A47800">REMINDERS</span>
+          </div>
+          <div class="card-body" style="background-color: #FFFEF7 !important;">
+
+            <div class="row">
+              <div class="col-1">
+                <img style="height: 20px;" src="./assets/icons/SVG/get_app.svg">
+              </div>
+              <div class="col-7">
+                <p class="card-text">Update available</p>
+                <p class="card-text"><small class="text-muted">An update for the BitGreen wallet was released on 03 March 2019. Update now for secuirty fixes, feature enhancements and performance improvements.</small></p>
+              </div>
+              <div class="col">
+                <span style="color: #00A519; float:right;">UPDATE</span>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-1">
+                <img style="height: 20px;" src="./assets/icons/SVG/chat_bubble.svg">
+              </div>
+              <div class="col-7">
+                <p class="card-text">Have your say!</p>
+                <p class="card-text"><small class="text-muted">As a masternode owner, don't forget to submit your vote for the latest budget proposal.</small></p>
+              </div>
+              <div class="col">
+                <span style="color: #00A519; float:right;">VOTE</span>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-1">
+                <img style="height: 20px;" src="./assets/icons/SVG/coin-bitg.svg">
+              </div>
+              <div class="col-7">
+                <p class="card-text">Participate in the April airdrop</p>
+                <p class="card-text"><small class="text-muted">A new airdrop has been scheduled. Enter now so you don't miss out.</small></p>
+              </div>
+              <div class="col">
+                <span style="color: #00A519; float:right;">Enter</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+</div>

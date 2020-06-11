@@ -186,10 +186,12 @@ a.sidebar-item-link {
 
 // ------ SYNC PROGRESS BAR ------ //
 
-.sync-bar {
-  .mat-progress-bar-fill::after {
-    background-color: $color;
-  }
+.sync-bar .mat-progress-bar-fill::after {
+    background-color: $color ;
+}
+
+.sync-bar2 .mat-progress-bar-fill::after {
+    background-color: #F87C00;
 }
 .sync-progress {
   padding: 0 120px;
