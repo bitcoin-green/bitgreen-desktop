@@ -1,0 +1,10 @@
+<div class="notice-panel card border-light mb-3">
+  <div class="card-header" [ngStyle]="{'background-color': headerBackgroundColor, 'color': headerColor}">
+    <mat-icon *ngIf="icon">{{icon}}</mat-icon>
+    <div class="panel-title">{{title}}</div>
+    <div *ngIf="headerEndText" class="panel-end-text">{{headerEndText}}</div>
+  </div>
+  <div class="card-body p-3" [ngStyle]="{'background-color': contentBackgroundColor}">
+    <ng-content></ng-content>
+  </div>
+</div>

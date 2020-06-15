@@ -1,0 +1,47 @@
+<div class="balance_section">
+  <div class="row">
+    <div class="col-4">
+      <img class="icon__b" src="assets/icons/SVG/coin-bitg.svg" alt="Bitgreen">
+    </div>
+    <div class="col-8">
+      <div class="total_balance">
+        <div class="total_balance__label">Total Balance</div>
+        <div class="total_balance__row">
+          <span class="total_balance__value">{{balance.totalBalance | number: '.2'}}</span>
+          <span class="total_balance_unit">BITG</span>
+        </div>
+      </div>
+      <div class="label_row">
+        <span>Available</span>
+        <span class="divider"></span>
+        <span>{{balance.availableBalance | number: '.2'}}</span>
+      </div>
+      <div class="label_row">
+        <span>Unconfirmed</span>
+        <span class="divider"></span>
+        <span>{{balance.unconfirmedBalance | number: '.2'}}</span>
+      </div>
+      <div class="label_row">
+        <span class="label_lock">Locked&nbsp;<mat-icon>lock</mat-icon></span>
+        <span class="divider"></span>
+        <span>{{balance.lockedBalance | number: '.2'}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="past_days_row">
+    <img src="assets/icons/SVG/swap_vert.svg">
+    <span>Past 30 days</span>
+  </div>
+  <div class="progress_bar__incoming">
+    <div>
+      Incoming
+    </div>
+    <progress-bar color="primary" [value]="balance.incomingValue" [total]="balance.incomingTotal"></progress-bar>
+  </div>
+  <div class="progress_bar__outgoing">
+    <div>
+      Outgoing
+    </div>
+    <progress-bar color="accent" [value]="balance.outgoingValue" [total]="balance.outgoingTotal"></progress-bar>
+  </div>
+</div>

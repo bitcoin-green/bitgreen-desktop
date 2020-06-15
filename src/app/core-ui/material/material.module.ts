@@ -2,18 +2,31 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import {
-  MatButtonModule, MatCardModule, MatCheckboxModule, MatExpansionModule, MatGridListModule, MatIconModule,
+  MatButtonModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatExpansionModule,
+  MatGridListModule,
+  MatIconModule,
   MatListModule,
   MatMenuModule,
   MatProgressBarModule,
   MatSidenavModule,
-  MatSnackBarModule, MatTabsModule, MatToolbarModule, MatRadioModule, MatInputModule,
+  MatSnackBarModule,
+  MatTabsModule,
+  MatToolbarModule,
+  MatRadioModule,
+  MatInputModule,
   MatTooltipModule,
-  MatSelectModule, MatPaginatorModule, MatProgressSpinnerModule, MatDialogModule,
-  MatStepperModule, MatSlideToggleModule
+  MatSelectModule,
+  MatPaginatorModule,
+  MatProgressSpinnerModule,
+  MatDialogModule,
+  MatStepperModule,
+  MatSlideToggleModule,
 } from '@angular/material';
 
-import {A11yModule} from '@angular/cdk/a11y';
+import { A11yModule } from '@angular/cdk/a11y';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -24,10 +37,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   imports: [
     CommonModule,
-    FlexLayoutModule, /* Flex layout here too */
-    FormsModule, /* forms */
-    ReactiveFormsModule, /* forms */
-    A11yModule, /* focus monitor */
+    FlexLayoutModule /* Flex layout here too */,
+    FormsModule /* forms */,
+    ReactiveFormsModule /* forms */,
+    A11yModule /* focus monitor */,
     MatButtonModule,
     MatCheckboxModule,
     MatListModule,
@@ -48,13 +61,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatPaginatorModule,
     MatProgressSpinnerModule,
     MatStepperModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
   ],
   exports: [
-    FlexLayoutModule, /* Flex layout here too */
-    FormsModule, /* forms */
-    ReactiveFormsModule, /* forms */
-    A11yModule, /* focus monitor */
+    FlexLayoutModule /* Flex layout here too */,
+    FormsModule /* forms */,
+    ReactiveFormsModule /* forms */,
+    A11yModule /* focus monitor */,
     MatButtonModule,
     MatCheckboxModule,
     MatListModule,
@@ -76,8 +89,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatProgressSpinnerModule,
     MatDialogModule,
     MatStepperModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
   ],
-  declarations: []
+  declarations: [],
 })
-export class MaterialModule { }
+export class MaterialModule {}

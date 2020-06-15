@@ -1,0 +1,26 @@
+.notice-panel {
+  .card-header {
+    padding: 0.5rem 1.25rem;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    .mat-icon {
+      font-size: 20px;
+      margin-right: 1rem;
+    }
+    .panel-title {
+      flex: 1;
+      text-transform: uppercase;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .panel-end-text {
+      font-weight: lighter;
+      font-size: 16px;
+    }
+  }
+  .card-body {
+    padding-bottom: 0.75rem;
+  }
+}

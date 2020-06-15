@@ -1,0 +1,11 @@
+<div class="progress_bar">
+  <div class="progress_bar__content">
+    <mat-progress-bar class="sync-bar grey-buffer" [color]="color" mode="determinate"
+      [value]="pValue">
+    </mat-progress-bar>
+  </div>
+
+  <div class="progress_bar__value">
+    {{value | number: '2.'}}{{pSuffix}}
+  </div>
+</div>

@@ -13,26 +13,19 @@ import 'hammerjs';
 
 import { routing } from './wallet.routing';
 
-
 @NgModule({
-  declarations: [
-    OverviewComponent,
-    SettingsComponent,
-    StakinginfoComponent
-  ],
+  declarations: [OverviewComponent, SettingsComponent, StakinginfoComponent],
   imports: [
     CommonModule,
     routing,
     SharedModule,
     WalletModule.forRoot(),
-    CoreUiModule
+    CoreUiModule,
   ],
-  entryComponents: [
-  ],
+  entryComponents: [],
   exports: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class WalletViewsModule {
-  constructor() {
-  }
+  constructor() {}
 }
