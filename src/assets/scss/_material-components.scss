@@ -31,7 +31,6 @@ Customizations and modifiers for default Material components
 
 */
 
-
 /* ------------------------------- *\
     1. BUTTONS & INDICATORS
 \* ------------------------------- */
@@ -48,7 +47,8 @@ button,
     position: relative;
     top: -1px;
   }
-  &.small { // smaller buttons
+  &.small {
+    // smaller buttons
     min-width: auto;
     line-height: 29px;
     padding: 0 12px;
@@ -59,7 +59,6 @@ button,
     width: 100%;
   }
 }
-
 
 // ------ 1.2. ICONS ------ //
 
@@ -82,11 +81,15 @@ button,
   // sidebar/sync: dark buffer background for progress bar
   &.dark-buffer {
     .mat-progress-bar-buffer {
-      background: lighten($bg-black, 15%);
+      background: lighten($bg-black, 15%) !important;
+    }
+  }
+  &.grey-buffer {
+    .mat-progress-bar-buffer {
+      background: $color-grey !important;
     }
   }
 }
-
 
 // ------ 1.4. PAGINATOR ------ //
 
@@ -121,8 +124,6 @@ button,
   }
 }
 
-
-
 /* ------------------------------- *\
     2. LAYOUT
 \* ------------------------------- */
@@ -134,14 +135,14 @@ mat-card.mat-card {
   box-shadow: 0 1px 0 $bg-shadow, 0 1px 10px -4px rgba($text, 0.3) !important;
 }
 
-
 // ------ 2.2. TABS ------ //
 
 .mat-tab-group {
   .mat-tab-label {
     font-family: $font;
     font-weight: 500;
-    &.mat-tab-label-active { // keep active tabs black (not grey)
+    &.mat-tab-label-active {
+      // keep active tabs black (not grey)
       opacity: 1;
       .mat-icon {
         opacity: 0.9;
@@ -159,12 +160,12 @@ mat-card.mat-card {
       opacity: 0.5;
     }
   }
-  .tag { // notification tags in tabs - e.g. Orders [3]
+  .tag {
+    // notification tags in tabs - e.g. Orders [3]
     @extend %tag;
     background-color: darken($bg-shadow, 15%);
   }
 }
-
 
 // ------ 2.3. EXPANSION PANELS ------ //
 
@@ -192,7 +193,8 @@ mat-card.mat-card {
       transition: none !important;
     }
   }
-  &.mat-expanded { // while expanded..
+  &.mat-expanded {
+    // while expanded..
     .mat-expansion-indicator {
       top: 0;
       &::after {
@@ -223,7 +225,6 @@ mat-card.mat-card {
   }
 }
 
-
 // ------ 2.4. STEPPER ------ //
 
 .mat-stepper-horizontal {
@@ -236,7 +237,6 @@ mat-card.mat-card {
     background: none;
   }
 }
-
 
 // ------ 2.5. LISTS ------ //
 
@@ -280,7 +280,6 @@ mat-card.mat-card {
   }
 }
 
-
 // ------ 2.6. MODALS ------ //
 
 .cdk-overlay-container {
@@ -292,7 +291,8 @@ mat-card.mat-card {
     .dialog-content {
       margin: 15px -24px;
     }
-    [mat-dialog-title] { // dialog title
+    [mat-dialog-title] {
+      // dialog title
       font-family: $font;
       font-weight: 500;
       font-size: 20px;
@@ -305,7 +305,8 @@ mat-card.mat-card {
 
     mat-dialog-content {
       line-height: 1.5;
-      .mat-progress-spinner { // loading spinners
+      .mat-progress-spinner {
+        // loading spinners
         width: 100px;
         height: 100px;
         padding: 0 !important;
@@ -376,7 +377,6 @@ mat-card.mat-card {
   }
 }
 
-
 // ------ 2.7. SCOLLBARS ------ //
 
 /* pseudo elements
@@ -415,8 +415,6 @@ mat-card.mat-card {
   overflow-y: scroll !important;
 }
 
-
-
 /* ------------------------------- *\
     3. FORMS
 \* ------------------------------- */
@@ -426,7 +424,8 @@ mat-card.mat-card {
 .mat-form-field {
   font-family: $font;
   line-height: normal;
-  &.larger { // larger inputs
+  &.larger {
+    // larger inputs
     font-size: 14px;
   }
   &.auto-width {
@@ -440,13 +439,13 @@ mat-card.mat-card {
       width: 100%;
     }
   }
-  &.no-top-padding { // remove top space reserved for floating placeholders (if disabled)
+  &.no-top-padding {
+    // remove top space reserved for floating placeholders (if disabled)
     .mat-input-infix {
       border-top: none;
     }
   }
 }
-
 
 // ------ 3.2. VERIFICATION ------ //
 
@@ -465,7 +464,6 @@ input {
   }
 }
 
-
 // ------ 3.3. SELECTS ------ //
 
 .mat-select {
@@ -482,7 +480,6 @@ input {
   border-bottom: .2px solid rgba(0, 0, 0, 0.507);
   line-height: 1.6em;
 }
-
 
 // ------ 3.4. RADIOS ------ //
 

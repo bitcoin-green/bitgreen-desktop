@@ -1,0 +1,14 @@
+.progress_bar {
+  display: flex;
+  align-items: center;
+  .progress_bar__content {
+    flex: 1;
+    .mat-progress-bar {
+      height: 8px;
+      border-radius: 4px;
+    }
+  }
+  .progress_bar__value {
+    margin-left: 10px;
+  }
+}

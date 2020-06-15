@@ -1,0 +1,14 @@
+<div class="notice-panel-item mb-2">
+  <div class="notice-panel-item-header">
+    <div class="notice-panel-item-circle-icon" *ngIf="inCircle && icon !== 'bitg'" [ngStyle]="{'background-color': circleBackgroundColor}">
+      <mat-icon [ngStyle]="{'color': iconColor}">{{icon}}</mat-icon>
+    </div>
+    <mat-icon *ngIf="!inCircle && icon !== 'bitg'" [ngStyle]="{'color': iconColor}">{{icon}}</mat-icon>
+    <img *ngIf="!inCircle && icon == 'bitg'" class="icon__b" src="assets/icons/SVG/coin-bitg.svg" alt="Bitgreen">
+    <div class="notice-panel-item-title ml-3">{{title}}</div>
+    <button [ngStyle]="{'color': buttonColor}" class="notice-panel-item-button ml-4">{{buttonTitle}}</button>
+  </div>
+  <div class="notice-panel-item-description mr-4">
+    {{description}}
+  </div>
+</div>

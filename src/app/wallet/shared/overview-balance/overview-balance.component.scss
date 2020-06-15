@@ -1,0 +1,68 @@
+@import "./src/assets/_config";
+
+.balance_section {
+  position: relative;
+  padding: .75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  background-color: $bg;
+  border-color: $color-grey;
+  font-weight: 500;
+  color: #263238;
+  .icon__b {
+    height: 100px;
+  }
+  .total_balance {
+    font-weight: 400;
+    .total_balance__label {
+      color: $text-grey;
+    }
+    .total_balance__row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      .total_balance__value {
+        font-size: 26px;
+      }
+      .total_balance_unit {
+      }
+    }
+  }
+  .label_row {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    .label_lock {
+      display: flex;
+      align-items: center;
+      .mat-icon {
+        font-size: 14px;
+        color: $text-grey;
+      }
+    }
+
+    .divider {
+      height: 2px;
+      background-color: $color-grey;
+      margin: 0 10px;
+      flex: 1;
+    }
+  }
+  .past_days_row {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 400;
+    img {
+      height: 25px;
+    }
+    span {
+      color: #a4adb1;
+    }
+  }
+  .progress_bar__incoming {
+  }
+  .progress_bar__outgoing {
+  }
+}

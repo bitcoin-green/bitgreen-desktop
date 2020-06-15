@@ -1,0 +1,13 @@
+<div class="transactions_tree">
+  <div *ngFor="let transaction of transactions" class="transaction_item">
+    <div class="transaction_item__main">
+      <span class="transaction_item__main__bullet"></span>
+      <div class="transaction_item__main__id">{{transaction.id}}</div>
+      <span class="transaction_item__main__price">+&nbsp;{{transaction.value | number: '.4'}}</span>
+    </div>
+    <div class="transaction_item__time">
+      <mat-icon>schedule</mat-icon>
+      {{transaction.timeStr}}
+    </div>
+  </div>
+</div>

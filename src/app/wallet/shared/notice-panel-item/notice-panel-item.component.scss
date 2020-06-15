@@ -1,0 +1,43 @@
+@import "./src/assets/_config";
+
+.notice-panel-item {
+  .notice-panel-item-header {
+    display: flex;
+    align-items: center;
+    .notice-panel-item-circle-icon {
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .mat-icon {
+        font-size: 18px;
+      }
+    }
+    .mat-icon {
+      font-size: 1.75rem;
+    }
+    .icon__b {
+      width: 1.75rem;
+    }
+    .notice-panel-item-title {
+      font-size: 14px;
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .notice-panel-item-button {
+      text-transform: uppercase;
+      border: none;
+      background-color: unset;
+      font-size: 14px;
+      font-weight: normal;
+    }
+  }
+  .notice-panel-item-description {
+    color: $text-grey;
+    margin-left: 2.75rem;
+  }
+}

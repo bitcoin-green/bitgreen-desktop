@@ -13,7 +13,6 @@ Global SCSS config file defining app-wide settings (included in every page)
 
 */
 
-
 /* ------------------------------- *\
     1. Variables
 \* ------------------------------- */
@@ -21,18 +20,19 @@ Global SCSS config file defining app-wide settings (included in every page)
 $font: "Inter_UI", sans-serif;
 
 // main colors
-$color: #00A519; // primary green-ish color
+$color: #00a519; // primary green-ish color
 $color-success: #4f8a10;
 $color-alert: #ec4b50;
-$color-orange: #F87C00;
+$color-orange: #f87c00;
 $color-warning: #f1cc00; // yellow-ish
 $color-info: #108cda; // blue-ish (e.g. status cold staking icon)
 $color-white: #fff;
+$color-grey: #e3e6e8;
 
 // text colors
 $text: #232728; // default text color
-$text-muted: #7E8790; // grey (for section titles, descriptions etc.)
-
+$text-muted: #7e8790; // grey (for section titles, descriptions etc.)
+$text-grey: #b5b5b5;
 // bg/element colors
 $bg: #fafafa; // light grey bg color
 $bg-hover: darken($bg, 2%);
@@ -54,20 +54,19 @@ $break-xl: 1700px;
 $break-hd: 1920px;
 $break-xhd: 2200px;
 
-
 /* ------------------------------- *\
     2. Global imports
 \* ------------------------------- */
 
 @import "scss/mixins";
 
-
 /* ------------------------------- *\
     3. Templates
     http://thesassway.com/intermediate/understanding-placeholder-selectors
 \* ------------------------------- */
 
-%subtitle { // section titles / H2's
+%subtitle {
+  // section titles / H2's
   @extend %disable-select;
   font-size: 15px;
   font-family: $font;
@@ -79,7 +78,8 @@ $break-xhd: 2200px;
   margin: 30px 0 25px;
 }
 
-%tag { // notification tags - e.g. in tabs: Orders [3]
+%tag {
+  // notification tags - e.g. in tabs: Orders [3]
   @extend %tfx;
   font-size: 80%;
   color: white;
@@ -103,7 +103,6 @@ $break-xhd: 2200px;
   user-select: auto;
   cursor: text;
 }
-
 
 // Transition effects
 %tfx {
