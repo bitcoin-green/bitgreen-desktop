@@ -1,12 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {
-  ApexAxisChartSeries,
-  ApexChart,
-  ChartComponent,
-  ApexDataLabels,
-  ApexXAxis,
-  ApexPlotOptions,
-} from 'ng-apexcharts';
 
 @Component({
   selector: 'app-history',
