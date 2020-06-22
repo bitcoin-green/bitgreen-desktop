@@ -1,7 +1,13 @@
-import { NgModule, ModuleWithProviders, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {
+  NgModule,
+  ModuleWithProviders,
+  CUSTOM_ELEMENTS_SCHEMA,
+} from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { QRCodeModule } from 'angularx-qrcode';
 import { CommonModule } from '@angular/common';
+import { ChartModule } from 'angular2-highcharts';
+import * as highcharts from 'highcharts';
 
 import { SharedModule } from '../shared/shared.module';
 import { CoreUiModule } from '../../core-ui/core-ui.module';
@@ -27,14 +33,13 @@ import { SignatureAddressModalComponent } from './shared/signature-address-modal
 import { FixWalletModalComponent } from './send/fix-wallet-modal/fix-wallet-modal.component';
 import { WalletFixedConfirmationComponent } from './send/fix-wallet-modal/wallet-fixed-confirmation/wallet-fixed-confirmation.component';
 
-
-
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
     CoreUiModule.forRoot(),
-    QRCodeModule
+    QRCodeModule,
+    ChartModule.forRoot(require('highcharts')),
   ],
   declarations: [
     TransactionsTableComponent,
@@ -50,7 +55,7 @@ import { WalletFixedConfirmationComponent } from './send/fix-wallet-modal/wallet
     QrCodeModalComponent,
     SignatureAddressModalComponent,
     FixWalletModalComponent,
-    WalletFixedConfirmationComponent
+    WalletFixedConfirmationComponent,
   ],
   exports: [
     TransactionsTableComponent,
@@ -60,8 +65,7 @@ import { WalletFixedConfirmationComponent } from './send/fix-wallet-modal/wallet
     ReceiveComponent,
     SendComponent,
     HistoryComponent,
-    AddressBookComponent
-
+    AddressBookComponent,
   ],
   entryComponents: [
     AddAddressLabelComponent,
@@ -71,23 +75,19 @@ import { WalletFixedConfirmationComponent } from './send/fix-wallet-modal/wallet
     SignatureAddressModalComponent,
     /* modals for wallet fix */
     FixWalletModalComponent,
-    WalletFixedConfirmationComponent
+    WalletFixedConfirmationComponent,
   ],
   providers: [],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class WalletModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: WalletModule,
-      providers: [
-        AddressService,
-        SendService
-      ]
+      providers: [AddressService, SendService],
     };
   }
 }
-
 
 export { AddressBookComponent } from './address-book/address-book.component';
 export { ReceiveComponent } from './receive/receive.component';

@@ -1,0 +1,161 @@
+@import "./src/assets/_config";
+
+.days-of-the-week {
+  width: 50%;
+  float: left;
+}
+
+.days-of-the-week p {
+  color: rgba(0, 0, 0, 0.25);
+  transition: color 0.5s linear, padding 0.5s linear;
+}
+
+.days-of-the-week p.active-day {
+  padding-left: 10px;
+  color: #fff;
+}
+
+.background-color-month,
+.slide-animation {
+  min-height: 100%;
+}
+
+.background-color-month {
+  transition: background-color 0.5s linear;
+}
+
+.calendar {
+  width: 240px;
+  margin: 10px auto;
+  overflow: auto;
+  border: none;
+
+  p {
+    float: left;
+    width: 14%;
+    text-align: center;
+    box-sizing: border-box;
+    margin: 0;
+    -webkit-user-select: none; /* Safari, iOS, and Android */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome and Opera */
+  }
+}
+
+.month {
+  &--long {
+    font-size: 1rem;
+    color: black;
+  }
+
+  &--year {
+    color: $text-grey;
+    font-size: 0.6rem;
+  }
+
+  p {
+    margin-bottom: 0;
+    font-weight: lighter;
+  }
+}
+
+.calendar-body {
+  overflow: auto;
+  background-color: #fff;
+}
+
+.calendar p.day {
+  font-size: 12px;
+  color: black;
+  padding: 5px 0;
+  font-weight: lighter;
+}
+
+.calendar p.date {
+  font-size: 13px;
+  color: black;
+  font-weight: lighter;
+  padding: 7px 0;
+  cursor: pointer;
+  margin-bottom: 4px;
+  border-radius: 50% 50%;
+}
+
+.calendar-head {
+  position: relative;
+  -webkit-user-select: none; /* Safari, iOS, and Android */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+.calendar-head .arrow-left,
+.calendar-head .arrow-right {
+  cursor: pointer;
+  padding: 0 10px;
+
+  mat-icon {
+    font-weight: bold;
+    color: $text-grey;
+  }
+}
+
+.calendar-head .arrow-left svg,
+.calendar-head .arrow-right svg {
+  color: black;
+  stroke: black;
+  transition: color 0.5s, stroke 0.5s;
+}
+
+.calendar-head .arrow-left:hover svg,
+.calendar-head .arrow-right:hover svg {
+  color: #a0d9d6;
+  stroke: #a0d9d6;
+}
+
+.calendar-head .arrow-left {
+  left: 0;
+}
+
+.calendar-head .arrow-right {
+  right: 0;
+}
+
+.calendar h3.month {
+  font-size: 16px;
+  margin: 0;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  color: #000;
+  text-align: center;
+}
+
+.calendar p.date:hover {
+  background-color: #f0f0f0;
+}
+
+.calendar p.today,
+.calendar p.today:hover {
+  color: $color;
+}
+
+.calendar p.selected,
+.calendar p.selected:hover {
+  color: #fff;
+  background-color: $color;
+}
+
+.calendar p.show,
+.calendar p.show:hover {
+  background-color: transparent;
+  cursor: default;
+}
+
+.calendar p.disabled,
+.calendar p.disabled:hover {
+  color: $text-grey;
+}

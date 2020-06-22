@@ -14,6 +14,7 @@ import { SpotLightCardComponent } from 'app/wallet/shared/spot-light-card/spot-l
 import { ArticleCardComponent } from 'app/wallet/shared/article-card/article-card.component';
 import { NoticePanelItemComponent } from 'app/wallet/shared/notice-panel-item/notice-panel-item.component';
 import { NoticePanelComponent } from 'app/wallet/shared/notice-panel/notice-panel.component';
+import { DatePickerComponent } from './date-picker/date-picker.component';
 
 @NgModule({
   imports: [CommonModule, MaterialModule, HttpClientModule],
@@ -27,6 +28,7 @@ import { NoticePanelComponent } from 'app/wallet/shared/notice-panel/notice-pane
     SpotLightCardComponent,
     NoticePanelComponent,
     NoticePanelItemComponent,
+    DatePickerComponent,
   ],
   exports: [
     CommonModule,
@@ -40,6 +42,7 @@ import { NoticePanelComponent } from 'app/wallet/shared/notice-panel/notice-pane
     SpotLightCardComponent,
     NoticePanelComponent,
     NoticePanelItemComponent,
+    DatePickerComponent,
   ],
   entryComponents: [DeleteConfirmationModalComponent],
 })

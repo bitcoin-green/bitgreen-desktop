@@ -2,43 +2,43 @@ import { Amount, DateFormatter } from '../../../core/util/utils';
 import { AddressType } from './address.model';
 
 export type TransactionCategory =
-    'all'
-    | 'receive'
-    | 'sent_to'
-    | 'payment_to_yourself'
-    | 'mined'
-    | 'mint_by_stake'
-    | 'masternode_reward';
+  | 'all'
+  | 'receive'
+  | 'sent_to'
+  | 'payment_to_yourself'
+  | 'mined'
+  | 'mint_by_stake'
+  | 'masternode_reward';
 
 export class Transaction {
-
   type: string;
 
-    txid: string;
-    address: string ;
-    label: string;
-    category: TransactionCategory;
-    amount: number;
-    reward: number;
-    fee: number;
-    time: number;
-    comment: string;
-    n0: string;
-    n1: string;
+  txid: string;
+  address: string;
+  label: string;
+  category: TransactionCategory;
+  amount: number;
+  reward: number;
+  fee: number;
+  time: number;
+  comment: string;
+  n0: string;
+  n1: string;
 
-    outputs: any[];
+  outputs: any[];
 
-    /* conflicting txs */
-    walletconflicts: any[];
+  /* conflicting txs */
+  walletconflicts: any[];
 
-    /* block info */
-    blockhash: string;
-    blockindex: number;
-    blocktime: number;
-    confirmations: number;
+  /* block info */
+  blockhash: string;
+  blockindex: number;
+  blocktime: number;
+  confirmations: number;
 
   constructor(json: any) {
     /* transactions */
+
     this.txid = json.txid;
     if (json.outputs && json.outputs.length) {
       this.address = json.outputs[0].address;
@@ -66,29 +66,30 @@ export class Transaction {
   }
 
   public getAddress(): string {
-      return this.address;
+    return this.address;
+  }
+
+  public getLabel(): string {
+    return this.label;
   }
 
   getCategory(): TransactionCategory {
-      return this.category;
+    return this.category;
   }
 
   public getExpandedTransactionID(): string {
-    return this.txid + this.getAmountObject().getAmount() + this.category;
+    return (
+      this.txid + this.getAmountObject().getAmount() + this.category + this.time
+    );
   }
 
-
-  public getConfirmationCount(confirmations: number): string {
-    if (this.confirmations > 12) {
-      return '12+';
-    }
-    return this.confirmations.toString();
+  public getConfirmation(): number {
+    return Number(this.confirmations);
   }
-
 
   /* Amount stuff */
   public getAmount(): number {
-      return +this.amount;
+    return +this.amount;
   }
 
   /** Turns amount into an Amount Object */
@@ -104,18 +105,45 @@ export class Transaction {
     /* If fee undefined then just return amount */
     if (this.fee === undefined) {
       return amount;
-    /* sent */
+      /* sent */
     } else if (amount < 0) {
-      return new Amount(+amount + (+this.fee)).getAmount();
+      return new Amount(+amount + +this.fee).getAmount();
     } else {
-      return new Amount(+amount - (+this.fee)).getAmount();
+      return new Amount(+amount - +this.fee).getAmount();
     }
   }
 
-
-
   /* Date stuff */
   public getDate(): string {
+    const today = new Date();
+    const createdTime = new Date(this.time * 1000);
+    const diff = today.getTime() - createdTime.getTime();
+
+    if (today.getDate() === createdTime.getDate() && diff < 1000 * 3600 * 24) {
+      return `Today at ${
+        createdTime
+          .toLocaleDateString('en-US', {
+            hour: 'numeric',
+            minute: 'numeric',
+            hour12: true,
+          })
+          .split(',')[1]
+      }`;
+    } else if (
+      today.getDate() - 1 === createdTime.getDate() &&
+      diff < 1000 * 3600 * 48
+    ) {
+      return `Yesterday at ${
+        createdTime
+          .toLocaleDateString('en-US', {
+            hour: 'numeric',
+            minute: 'numeric',
+            hour12: true,
+          })
+          .split(',')[1]
+      }`;
+    }
+
     return new DateFormatter(new Date(this.time * 1000)).dateFormatter();
   }
 
@@ -126,8 +154,6 @@ export class Transaction {
         return this.outputs[key].narration;
       }
     }
-    return false
+    return false;
   }
-
-
 }

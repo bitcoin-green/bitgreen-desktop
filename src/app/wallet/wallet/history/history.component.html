@@ -1,73 +1,112 @@
 <app-header class="disable-select">
-  <div class="container-fluid">
-    <mat-tab-group (selectChange)="changeCategory($event.index)" [selectedIndex]="selectedTab">
-      <!-- [(selectedIndex)]="categories.indexOf(filters.category)"> -->
-      <mat-tab *ngFor="let category of categories">
-        <ng-template mat-tab-label>
-          <mat-icon fontSet="partIcon" fontIcon="part-{{ category.icon }}"></mat-icon>
-          {{ category.title }}
-        </ng-template>
-      </mat-tab>
-    </mat-tab-group>
+  <div fxLayout="row" class="container-fluid history__header">
+    <h1>Transaction History</h1>
+    <div class="history__header--option">
+      Sort by
+    </div>
   </div>
 </app-header>
 
-<div fxLayout="row" fxLayoutGap="30px" class="container-block">
+<div fxLayout="row" fxLayoutGap="30px" class="container-block history__body">
+  <div class="history__graph" fxFlex="0 0 45%">
+    <div class="history__search-input">
+      <input
+        placeholder="Enter an address/nickname, or transaction hash"
+        type="text"
+      />
 
-  <div class="filter" fxFlex="0 0 230px">
-
-    <div class="section search-sorting">
-      <div class="subtitle first"><!--Search &amp; -->Sort</div>
-      <mat-card class="filter-card">
-
-        <!--mat-form-field class="icon-input filter-input" floatPlaceholder="never">
-          <input matInput type="text" class="header-input"
-                 placeholder="Search transactions" [(ngModel)]="filters.search"
-                 (keyup.enter)="filter()" (keyup.escape)="filters.search = ''; filter()">
-
-          <mat-icon *ngIf="filters.search" (click)="filters.search=''; filter()" matTooltip="Clear" fontSet="partIcon"
-                    fontIcon="part-clear-all"></mat-icon>
-
-          <mat-icon *ngIf="!filters.search" fontSet="partIcon" fontIcon="part-search" (click)="filter()"
-                    matTooltip="Search">
-          </mat-icon>
-        </mat-form-field-->
-
-        <mat-form-field class="sort-by filter-input" floatPlaceholder="never">
-          <mat-select placeholder="Sort results" [(ngModel)]="filters.sort" (change)="filter()">
-            <mat-option *ngFor="let sorting of sortings" [value]="sorting.value">
-              {{ sorting.title }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </mat-card>
+      <mat-icon>search</mat-icon>
+    </div>
+    <div
+      class="history__filter"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+    >
+      <div class="history__filter--item active" fxLayoutAlign="center center">
+        <span>Any</span>
+      </div>
+      <div class="history__filter--connector"></div>
+      <div class="history__filter--item" fxLayoutAlign="center center">
+        <span>Staking</span>
+      </div>
+      <div class="history__filter--item" fxLayoutAlign="center center">
+        <span>Masternodes</span>
+      </div>
+      <div class="history__filter--item" fxLayoutAlign="center center">
+        <span>Incoming</span>
+      </div>
+      <div class="history__filter--item" fxLayoutAlign="center center">
+        <span>Outgoing</span>
+      </div>
     </div>
 
-    <p class="widget-help">
-      Transaction filter gives you the most granular control over displayed transactions.
-    </p>
-
-    <div class="section filter-by-type">
-      <div class="subtitle">Filter by type</div>
-      <mat-card class="filter-card">
-        <mat-radio-group class="radio-group block-radio" [(ngModel)]="filters.type" (change)="filter()">
-          <mat-radio-button class="filter-option" *ngFor="let type of types" value="{{ type.value }}">
-            {{ type.title }}
-          </mat-radio-button>
-        </mat-radio-group>
-      </mat-card>
+    <div class="history__datepicker" fxLayoutAlign="space-between start">
+      <app-date-picker></app-date-picker>
+      <div
+        class="history__datepicker--connector"
+        fxLayout="column"
+        fxLayoutAlign="center center"
+      >
+        <div class="history__datepicker--connector__arrow"></div>
+        <div
+          class="history__datepicker--connector__icon"
+          fxLayoutAlign="center center"
+        >
+          <span>TO</span>
+        </div>
+        <div class="history__datepicker--connector__arrow"></div>
+        <p>
+          96<br />
+          DAYS
+        </p>
+      </div>
+      <app-date-picker></app-date-picker>
     </div>
 
-    <button mat-button color="warn" class="clear-filters" (click)="clear()">
-      <mat-icon fontSet="partIcon" fontIcon="part-clear-all"></mat-icon>
-      Clear all filters
-    </button>
+    <div class="history__activity" fxLayoutAlign="space-between start">
+      <h3>Activity</h3>
+      <div class="history__activity--chart">
+        <chart [options]="pieChartOptions"></chart>
+        <div class="history__activity--chart__inner">
+          <mat-icon aria-hidden="false">swap_vert</mat-icon>
+        </div>
+      </div>
 
+      <div class="history__activity--total">
+        <h3>Total</h3>
+        <p>7,205</p>
+      </div>
+      <div class="history__activity--item">
+        <h3>Incoming</h3>
+        <p>5,350</p>
+      </div>
+      <div class="history__activity--item">
+        <h3>Outgoing</h3>
+        <p>1855</p>
+      </div>
+      <div class="history__activity--item">
+        <h3>Fees</h3>
+        <p>0.0005</p>
+      </div>
+    </div>
+
+    <div class="history__graph">
+      <chart [options]="chartOptions"></chart>
+    </div>
   </div>
 
   <div class="tx-list section" fxFlex="1 1 100%">
-    <transaction-table #transactions [display]="{'header': false, 'internalHeader': true, 'pagination': true, 'category': true, 'expand': true}">
+    <transaction-table
+      #transactions
+      [display]="{
+        header: false,
+        internalHeader: true,
+        pagination: true,
+        category: true,
+        expand: true
+      }"
+    >
     </transaction-table>
-  </div><!-- .tx-list -->
-
+  </div>
+  <!-- .tx-list -->
 </div>

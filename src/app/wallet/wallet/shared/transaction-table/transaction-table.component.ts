@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { PageEvent } from '@angular/material';
-import { Log } from 'ng2-logger'
+import { Log } from 'ng2-logger';
 
 import { slideDown } from 'app/core-ui/core.animations';
 import { Transaction } from '../transaction.model';
@@ -11,11 +11,9 @@ import { TransactionService } from '../transaction.service';
   templateUrl: './transaction-table.component.html',
   styleUrls: ['./transaction-table.component.scss'],
   providers: [TransactionService],
-  animations: [slideDown()]
+  animations: [slideDown()],
 })
-
 export class TransactionsTableComponent implements OnInit {
-
   @Input() display: any;
   @ViewChild('paginator') paginator: any;
 
@@ -36,8 +34,135 @@ export class TransactionsTableComponent implements OnInit {
     comment: true,
     blockHash: false,
     blockIndex: false,
-    expand: false
+    expand: false,
   };
+
+  private tempData = [
+    new Transaction({
+      txid: 1,
+      category: 'received',
+      outputs: [
+        {
+          address: 'GQqAJHxewk9tRpbQrQZLAr1Zgc7rj8i59V',
+          label: 'MyPrimaryAddress',
+        },
+      ],
+      amount: 23,
+      time: 1592442601,
+      confirmations: 4,
+    }),
+    new Transaction({
+      txid: 2,
+      category: 'sent',
+      outputs: [
+        { address: 'GQqAJHxewk9tRpbQrQZLAr1Zgc7rj8i59V', label: 'Staking06' },
+      ],
+      amount: 23,
+      time: 1592442601,
+      confirmations: 7,
+    }),
+    new Transaction({
+      txid: 3,
+      category: 'received',
+      outputs: [
+        {
+          address: 'GQqAJHxewk9tRpbQrQZLAr1Zgc7rj8i59V',
+          label: 'MyPrimaryAddress1',
+        },
+      ],
+      amount: 23,
+      time: 1592442601,
+      confirmations: 4,
+    }),
+    new Transaction({
+      txid: 4,
+      category: 'sent',
+      outputs: [
+        {
+          address: 'GQqAJHxewk9tRpbQrQZLAr1Zgc7rj8i59V',
+          label: 'MyPrimaryAddress2',
+        },
+      ],
+      amount: -1223,
+      time: 1592442601,
+      confirmations: 4,
+    }),
+    new Transaction({
+      txid: 5,
+      category: 'sent',
+      outputs: [
+        {
+          address: 'GQqAJHxewk9tRpbQrQZLAr1Zgc7rj8i59V',
+          label: 'MyPrimaryAddress3',
+        },
+      ],
+      amount: 23,
+      time: 1592142601,
+      confirmations: 14,
+    }),
+    new Transaction({
+      txid: 6,
+      category: 'masternode',
+      outputs: [
+        {
+          address: 'GQqAJHxewk9tRpbQrQZLAr1Zgc7rj8i59V',
+          label: 'Masternode01',
+        },
+      ],
+      amount: 23,
+      time: 1592442601,
+      confirmations: 4,
+    }),
+    new Transaction({
+      txid: 7,
+      category: 'received',
+      outputs: [
+        {
+          address: 'GQqAJHxewk9tRpbQrQZLAr1Zgc7rj8i59V',
+          label: 'MyPrimaryAddress4',
+        },
+      ],
+      amount: 23,
+      time: 1592715600,
+      confirmations: 4,
+    }),
+    new Transaction({
+      txid: 8,
+      category: 'sent',
+      outputs: [
+        {
+          address: 'GQqAJHxewk9tRpbQrQZLAr1Zgc7rj8i59V',
+          label: 'MyPrimaryAddress5',
+        },
+      ],
+      amount: 23,
+      time: 1592715600,
+      confirmations: 4,
+    }),
+    new Transaction({
+      txid: 9,
+      category: 'sent',
+      outputs: [
+        {
+          address: 'GQqAJHxewk9tRpbQrQZLAr1Zgc7rj8i59V',
+          label: 'MyPrimaryAddress6',
+        },
+      ],
+      amount: -23,
+      time: 1592615600,
+      confirmations: 14,
+    }),
+    new Transaction({
+      txid: 10,
+      category: 'received',
+      outputs: [
+        { address: 'GQqAJHxewk9tRpbQrQZLAr1Zgc7rj8i59V', label: '123' },
+      ],
+      amount: -64.23,
+      time: 1592705600,
+      confirmations: 4,
+    }),
+  ];
 
   /*
     This shows the expanded table for a specific unique identifier = (tx.txid + tx.getAmountObject().getAmount() + tx.category).
@@ -47,13 +172,13 @@ export class TransactionsTableComponent implements OnInit {
   pageEvent: PageEvent; /* MatPaginator output */
   log: any = Log.create('transaction-table.component');
 
-  constructor(public txService: TransactionService) {
-
-  }
+  constructor(public txService: TransactionService) {}
 
   ngOnInit(): void {
     this.display = Object.assign({}, this._defaults, this.display); // Set defaults
-    this.log.d(`transaction-table: amount of transactions per page ${this.display.txDisplayAmount}`)
+    this.log.d(
+      `transaction-table: amount of transactions per page ${this.display.txDisplayAmount}`
+    );
     this.txService.postConstructor(this.display.txDisplayAmount);
   }
 
@@ -72,7 +197,7 @@ export class TransactionsTableComponent implements OnInit {
   }
 
   private inSearchMode(query: any): boolean {
-    return (query !== undefined && query !== '');
+    return query !== undefined && query !== '';
   }
 
   public showExpandedTransactionDetail(tx: Transaction): void {
@@ -85,7 +210,7 @@ export class TransactionsTableComponent implements OnInit {
   }
 
   public checkExpandDetails(tx: Transaction): boolean {
-    return (this.expandedTransactionID === tx.getExpandedTransactionID());
+    return this.expandedTransactionID === tx.getExpandedTransactionID();
   }
 
   public styleConfimations(confirm: number): string {
@@ -96,7 +221,7 @@ export class TransactionsTableComponent implements OnInit {
     } else if (confirm >= 5 && confirm <= 8) {
       return 'confirm-2';
     } else if (confirm >= 9 && confirm <= 12) {
-      return 'confirm-3'
+      return 'confirm-3';
     } else {
       return 'confirm-ok';
     }
@@ -104,9 +229,8 @@ export class TransactionsTableComponent implements OnInit {
 
   public resetPagination(): void {
     if (this.paginator) {
-      this.paginator.resetPagination(0)
+      this.paginator.resetPagination(0);
       this.txService.changePage(0);
     }
   }
-
 }

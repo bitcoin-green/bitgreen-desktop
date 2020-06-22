@@ -18,6 +18,7 @@
   "author": "Bitgreen contributors",
   "main": "main.js",
   "scripts": {
+    "work": "ng serve",
     "ng": "ng",
     "build": "ng build",
     "test": "ng test",
@@ -142,7 +143,12 @@
     "asarUnpack": []
   },
   "dependencies": {
+    "@angular/localize": "^9.1.11",
+    "@ng-bootstrap/ng-bootstrap": "^6.1.0",
+    "@types/node": "^9.6.56",
+    "angular2-highcharts": "^0.5.5",
     "bluebird": "^3.4.7",
+    "bootstrap": "^4.5.0",
     "buffered-spawn": "^3.3.2",
     "cli-progress": "^1.7.0",
     "core-js": "^2.4.1",
