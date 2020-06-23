@@ -15,6 +15,7 @@ import { ArticleCardComponent } from 'app/wallet/shared/article-card/article-car
 import { NoticePanelItemComponent } from 'app/wallet/shared/notice-panel-item/notice-panel-item.component';
 import { NoticePanelComponent } from 'app/wallet/shared/notice-panel/notice-panel.component';
 import { DatePickerComponent } from './date-picker/date-picker.component';
+import { OverlayComponent } from './overlay/overlay.component';
 
 @NgModule({
   imports: [CommonModule, MaterialModule, HttpClientModule],
@@ -29,6 +30,7 @@ import { DatePickerComponent } from './date-picker/date-picker.component';
     NoticePanelComponent,
     NoticePanelItemComponent,
     DatePickerComponent,
+    OverlayComponent,
   ],
   exports: [
     CommonModule,
