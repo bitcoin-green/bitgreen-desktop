@@ -7,7 +7,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 })
 export class HistoryComponent implements OnInit {
   @ViewChild('transactions') transactions: any;
-  @ViewChild('chart') chart: ChartComponent;
 
   chartOptions: any;
   pieChartOptions: any;
