@@ -69,7 +69,7 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   background: transparent;
-  transition: background .3s;
+  transition: background 0.3s;
   white-space: nowrap;
 }
 
@@ -266,7 +266,7 @@ kbd {
   width: 16px !important;
   height: 16px !important;
   transform: translate(20%, 20%);
-  background-image: url('./assets/icons/SVG/lock.png') !important;
+  background-image: url("./assets/icons/SVG/lock.png") !important;
   background-origin: content-box;
   background-size: contain;
   background-position: center center;
@@ -291,4 +291,22 @@ kbd {
 
 .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
   background-color: white !important;
+}
+
+.mat-expansion-panel-body {
+  padding-bottom: 0 !important;
+}
+
+.highcharts-container {
+  width: 100% !important;
+
+  svg {
+    width: 100%;
+  }
+}
+
+.history__activity--chart {
+  .highcharts-container {
+    width: 140px !important;
+  }
 }

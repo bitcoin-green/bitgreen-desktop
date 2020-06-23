@@ -1,11 +1,6 @@
 export class Amount {
-
   constructor(private amount: number, private maxRoundingDigits: number = 8) {
     this.amount = this.truncateToDecimals(amount, maxRoundingDigits);
-  }
-
-  public getAmount() {
-    return this.amount;
   }
 
   public getAmountWithFee(fee: number) {
@@ -25,6 +20,20 @@ export class Amount {
   }
 
   /**
+   * Return full digits number.
+   */
+  public getDigitsNumber(digit): string {
+    return Math.abs(this.amount).toFixed(digit);
+  }
+
+  /**
+   * Return full amount number.
+   */
+  public getAmount(): number {
+    return Number(this.amount);
+  }
+
+  /**
    * Returns fractional part.
    * e.g:
    * -25.9 -> '9'
@@ -35,7 +44,7 @@ export class Amount {
    */
   public getFractionalPart(): string {
     if (this.ifDotExist()) {
-      return (this.getAmount().toString()).split('.')[1];
+      return this.getAmount().toString().split('.')[1];
     }
     return '';
   }
@@ -68,13 +77,12 @@ export class Amount {
    * 25.9 -> '.'
    */
   dot(): string {
-    return  this.ifDotExist() ? '.' : '';
+    return this.ifDotExist() ? '.' : '';
   }
 
   ifDotExist(): boolean {
-    return (this.getAmount().toString()).indexOf('.') !== -1;
+    return this.getAmount().toString().indexOf('.') !== -1;
   }
-
 
   /**
    * Properly truncates the value.
@@ -87,7 +95,6 @@ export class Amount {
     const calcDec = Math.pow(10, dec);
     return Math.trunc(int * calcDec) / calcDec;
   }
-
 }
 
 export class Fee {
@@ -111,7 +118,6 @@ export class Fee {
 }
 
 export class Duration {
-
   constructor(private duration: number) {
     /*
       test time formatter
@@ -131,54 +137,87 @@ export class Duration {
 
   // seconds into readable format
   private formatTime(seconds: number): String {
-    const years: number = Math.floor(seconds / (60 /*s*/ * 60 /*min*/ * 24 /*hour*/ * 365/*days*/));
-    const months: number =  Math.floor(seconds / (60 /*s*/ * 60 /*min*/ * 24 /*hours*/ * 30.5/*months*/)) - years * 12;
-    const days: number =  Math.floor(seconds / (60 /*s*/ * 60 /*min*/ * 24/*hours*/)) - months * 30.5;
-    const hours: number =  Math.floor(seconds / (60 /*s*/ * 60/*min*/)) - days * 24;
-    const minutes: number =  Math.floor(seconds / (60/*s*/)) - hours * 60;
+    const years: number = Math.floor(
+      seconds / (60 /*s*/ * 60 /*min*/ * 24 /*hour*/ * 365) /*days*/
+    );
+    const months: number =
+      Math.floor(
+        seconds / (60 /*s*/ * 60 /*min*/ * 24 /*hours*/ * 30.5) /*months*/
+      ) -
+      years * 12;
+    const days: number =
+      Math.floor(seconds / (60 /*s*/ * 60 /*min*/ * 24) /*hours*/) -
+      months * 30.5;
+    const hours: number =
+      Math.floor(seconds / (60 /*s*/ * 60) /*min*/) - days * 24;
+    const minutes: number = Math.floor(seconds / 60 /*s*/) - hours * 60;
 
     if (years > 0) {
-      return  years + ' years' + (months > 0 ? ' and ' + Math.ceil(months) + ' months' : '');
+      return (
+        years +
+        ' years' +
+        (months > 0 ? ' and ' + Math.ceil(months) + ' months' : '')
+      );
     } else if (months > 0) {
-      return  months + ' months' + (days > 0 ? ' and ' + Math.ceil(days) + ' days' : '');
+      return (
+        months +
+        ' months' +
+        (days > 0 ? ' and ' + Math.ceil(days) + ' days' : '')
+      );
     } else if (days > 0) {
-      return  days + ' days' + (hours > 0 ? ' and ' + Math.ceil(hours) + ' hours' : '');
+      return (
+        days +
+        ' days' +
+        (hours > 0 ? ' and ' + Math.ceil(hours) + ' hours' : '')
+      );
     } else if (hours > 0) {
-      return  hours + ' hours' + (minutes > 0 ? ' and ' + Math.ceil(minutes) + ' minutes' : '');
+      return (
+        hours +
+        ' hours' +
+        (minutes > 0 ? ' and ' + Math.ceil(minutes) + ' minutes' : '')
+      );
     } else if (minutes > 0) {
-      return  minutes + ' minutes';
+      return minutes + ' minutes';
     }
   }
 
   // seconds into short & readable format
   private shortFormatTime(seconds: number): String {
-    const years: number = Math.floor(seconds / (60 /*s*/ * 60 /*min*/ * 24 /*hour*/ * 365/*days*/));
-    const months: number =  Math.floor(seconds / (60 /*s*/ * 60 /*min*/ * 24 /*hours*/ * 30.5/*months*/)) - years * 12;
-    const days: number =  Math.floor(seconds / (60 /*s*/ * 60 /*min*/ * 24/*hours*/)) - months * 30.5;
-    const hours: number =  Math.floor(seconds / (60 /*s*/ * 60/*min*/)) - days * 24;
-    const minutes: number =  Math.floor(seconds / (60/*s*/)) - hours * 60;
+    const years: number = Math.floor(
+      seconds / (60 /*s*/ * 60 /*min*/ * 24 /*hour*/ * 365) /*days*/
+    );
+    const months: number =
+      Math.floor(
+        seconds / (60 /*s*/ * 60 /*min*/ * 24 /*hours*/ * 30.5) /*months*/
+      ) -
+      years * 12;
+    const days: number =
+      Math.floor(seconds / (60 /*s*/ * 60 /*min*/ * 24) /*hours*/) -
+      months * 30.5;
+    const hours: number =
+      Math.floor(seconds / (60 /*s*/ * 60) /*min*/) - days * 24;
+    const minutes: number = Math.floor(seconds / 60 /*s*/) - hours * 60;
 
     if (years > 0) {
-      return  years + ' years';
+      return years + ' years';
     } else if (months > 0) {
-      return  months + ' months';
+      return months + ' months';
     } else if (days > 0) {
-      return  days + ' days';
+      return days + ' days';
     } else if (hours > 0) {
-      return  hours + ' hours';
+      return hours + ' hours';
     } else if (minutes > 0) {
-      return  minutes + ' minutes';
+      return minutes + ' minutes';
     }
   }
-
-  }
+}
 
 export class AddressHelper {
   addressPublicRegex: RegExp = /^[pPrR25][a-km-zA-HJ-NP-Z1-9]{25,52}$/;
   addressBothRegex: RegExp = /^[pPrR25tT][a-km-zA-HJ-NP-Z1-9]{25,}$/;
 
   testAddress(address: string, type?: string): boolean {
-    return this[('addressPublicRegex')].test(address);
+    return this['addressPublicRegex'].test(address);
   }
 
   getAddress(address: string): string {
@@ -187,30 +226,45 @@ export class AddressHelper {
   }
 
   addressFromPaste(event: any): string {
-    return ['input', 'textarea'].includes(event.target.tagName.toLowerCase()) ?
-      '' : this.getAddress(event.clipboardData.getData('text'));
+    return ['input', 'textarea'].includes(event.target.tagName.toLowerCase())
+      ? ''
+      : this.getAddress(event.clipboardData.getData('text'));
   }
 }
 
 export class DateFormatter {
-
-  constructor(private date: Date) {
-  }
+  constructor(private date: Date) {}
 
   public dateFormatter(onlyShowDate?: boolean) {
     return (
-      (this.date.getDate() < 10 ? '0' + this.date.getDate() : this.date.getDate()) + '-' +
-      ((this.date.getMonth() + 1) < 10 ? '0' + (this.date.getMonth() + 1) : (this.date.getMonth() + 1)) + '-' +
-      (this.date.getFullYear() < 10 ? '0' + this.date.getFullYear() : this.date.getFullYear())
-      + (onlyShowDate === false ?  ' ' + this.hourSecFormatter() : '')
-    )
+      (this.date.getDate() < 10
+        ? '0' + this.date.getDate()
+        : this.date.getDate()) +
+      '-' +
+      (this.date.getMonth() + 1 < 10
+        ? '0' + (this.date.getMonth() + 1)
+        : this.date.getMonth() + 1) +
+      '-' +
+      (this.date.getFullYear() < 10
+        ? '0' + this.date.getFullYear()
+        : this.date.getFullYear()) +
+      (onlyShowDate === false ? ' ' + this.hourSecFormatter() : '')
+    );
   }
 
   public hourSecFormatter() {
-      return (
-        (this.date.getHours() < 10 ? '0' + this.date.getHours() : this.date.getHours()) + ':' +
-        (this.date.getMinutes() < 10 ? '0' + this.date.getMinutes() : this.date.getMinutes()) + ':' +
-        (this.date.getSeconds() < 10 ? '0' + this.date.getSeconds() : this.date.getSeconds())
-      )
+    return (
+      (this.date.getHours() < 10
+        ? '0' + this.date.getHours()
+        : this.date.getHours()) +
+      ':' +
+      (this.date.getMinutes() < 10
+        ? '0' + this.date.getMinutes()
+        : this.date.getMinutes()) +
+      ':' +
+      (this.date.getSeconds() < 10
+        ? '0' + this.date.getSeconds()
+        : this.date.getSeconds())
+    );
   }
 }

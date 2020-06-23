@@ -8,20 +8,16 @@ import { Log } from 'ng2-logger';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-
   log: any = Log.create('app.component');
+  chartOptions: any;
 
   // multiwallet: any = [];
 
-  constructor(
-    private _iconRegistry: MatIconRegistry,
-  ) {
+  constructor(private _iconRegistry: MatIconRegistry) {
     _iconRegistry
       .registerFontClassAlias('partIcon', 'part-icon')
       .registerFontClassAlias('faIcon', 'fa');
   }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 }

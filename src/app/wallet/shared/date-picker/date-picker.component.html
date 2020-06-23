@@ -1,0 +1,35 @@
+<div class="background-color-month">
+  <div class="calendar">
+    <div class="calendar-head" fxLayoutAlign="space-between center">
+      <div class="arrow-left" (click)="previousMonth(currentMonth.date)">
+        <mat-icon>navigate_before</mat-icon>
+      </div>
+      <h3 class="month">
+        <span class="month--long">{{ currentMonth.monthName }}</span
+        ><br />
+        <span class="month--year">{{ currentMonth.year }}</span>
+      </h3>
+      <div class="arrow-right" (click)="nextMonth(currentMonth.date)">
+        <mat-icon>navigate_next</mat-icon>
+      </div>
+    </div>
+    <div class="calendar-body">
+      <p class="day" *ngFor="let dayShort of days.short">
+        {{ dayShort }}
+      </p>
+      <p
+        class="date"
+        *ngFor="let date of currentMonth.dates"
+        [ngClass]="{
+          selected: date.selected,
+          today: date.today,
+          show: date.show === false,
+          disabled: date.prev || date.next
+        }"
+        (click)="SelectDate(date.id, date.show, date)"
+      >
+        {{ getDateFromString(date.date) }}
+      </p>
+    </div>
+  </div>
+</div>
