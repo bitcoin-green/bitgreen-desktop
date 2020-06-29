@@ -3,8 +3,8 @@
   <div class="row">
 
     <div class="col">
-      <overview-balance [balance]="balance"></overview-balance>
-      <div class="title__block">RECENT TRANSACTIONS</div>
+      <overview-balance *ngIf="walletInitialized"></overview-balance>
+      <div class="title__block">RECENT TRANSACTIONS {{getBalance()}}</div>
       <transactions-tree [transactions]="recentTransactions" (onClick)="onClickTransaction()"></transactions-tree>
       <button class="btn btn-success btn-view_history">VIEW HISTORY</button>
     </div>

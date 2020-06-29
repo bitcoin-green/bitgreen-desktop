@@ -7,24 +7,24 @@
       <div class="total_balance">
         <div class="total_balance__label">Total Balance</div>
         <div class="total_balance__row">
-          <span class="total_balance__value">{{balance.totalBalance | number: '.2'}}</span>
+          <span class="total_balance__value">{{totalBalance.getIntegerPart()}}{{totalBalance.dot()}}{{totalBalance.getFractionalPart() || ''}}</span>
           <span class="total_balance_unit">BITG</span>
         </div>
       </div>
       <div class="label_row">
         <span>Available</span>
         <span class="divider"></span>
-        <span>{{balance.availableBalance | number: '.2'}}</span>
+        <span>{{availableBalance.getIntegerPart()}}{{availableBalance.dot()}}{{availableBalance.getFractionalPart() || ''}}</span>
       </div>
       <div class="label_row">
         <span>Unconfirmed</span>
         <span class="divider"></span>
-        <span>{{balance.unconfirmedBalance | number: '.2'}}</span>
+        <span>{{unconfirmedBalance.getIntegerPart()}}{{unconfirmedBalance.dot()}}{{unconfirmedBalance.getFractionalPart() || ''}}</span>
       </div>
       <div class="label_row">
         <span class="label_lock">Locked&nbsp;<mat-icon>lock</mat-icon></span>
         <span class="divider"></span>
-        <span>{{balance.lockedBalance | number: '.2'}}</span>
+        <span>{{lockedBalance.getIntegerPart()}}{{lockedBalance.dot()}}{{lockedBalance.getFractionalPart() || ''}}</span>
       </div>
     </div>
   </div>
@@ -36,12 +36,12 @@
     <div>
       Incoming
     </div>
-    <progress-bar color="primary" [value]="balance.incomingValue" [total]="balance.incomingTotal"></progress-bar>
+    <progress-bar color="primary" [value]="incomingValue" [total]="monthlyTotal"></progress-bar>
   </div>
   <div class="progress_bar__outgoing">
     <div>
       Outgoing
     </div>
-    <progress-bar color="accent" [value]="balance.outgoingValue" [total]="balance.outgoingTotal"></progress-bar>
+    <progress-bar color="accent" [value]="outgoingValue" [total]="monthlyTotal"></progress-bar>
   </div>
 </div>

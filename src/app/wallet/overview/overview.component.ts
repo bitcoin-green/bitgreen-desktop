@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
-import { RpcStateService } from 'app/core/core.module';
+import {RpcService, RpcStateService} from 'app/core/core.module';
 
 import { ManageWidgetsComponent } from 'app/modals/manage-widgets/manage-widgets.component';
 import {
-  IOverviewBalance,
   ITransaction,
   ISpotLight,
   IArticle,
@@ -17,17 +16,7 @@ import {
 })
 export class OverviewComponent implements OnInit {
   testnet: boolean = false;
-
-  balance: IOverviewBalance = {
-    totalBalance: 6410,
-    availableBalance: 1260,
-    unconfirmedBalance: 150,
-    lockedBalance: 5000,
-    incomingValue: 1544,
-    incomingTotal: 3000,
-    outgoingValue: 1544,
-    outgoingTotal: 3000,
-  };
+  walletInitialized: boolean = undefined;
 
   recentTransactions: ITransaction[] = [
     {
@@ -114,18 +103,35 @@ export class OverviewComponent implements OnInit {
     },
   ];
 
-  constructor(public dialog: MatDialog, private rpcState: RpcStateService) {}
+
+  private destroyed: boolean = false;
+
+  constructor(
+    public dialog: MatDialog,
+    private rpcState: RpcStateService
+  ) {}
 
   openWidgetManager(): void {
     const dialogRef = this.dialog.open(ManageWidgetsComponent);
   }
 
+  getBalance(): any {
+    return this.rpcState.get('getbalancedatadesktop');
+  }
+
   ngOnInit() {
+
+    // Updates the error box in the sidenav if wallet is not initialized.
+    this.rpcState.observe('ui:walletInitialized')
+      .takeWhile(() => !this.destroyed)
+      .subscribe(status => this.walletInitialized = status);
+
     // check if testnet -> Show/Hide Anon Balance
     this.rpcState
       .observe('getblockchaininfo', 'chain')
       .take(1)
       .subscribe(chain => (this.testnet = chain === 'test'));
+
   }
 
   onClickTransaction(transaction: ITransaction) {}

@@ -1,14 +1,3 @@
-export interface IOverviewBalance {
-  totalBalance: Number;
-  availableBalance: Number;
-  unconfirmedBalance: Number;
-  lockedBalance: Number;
-  incomingValue: Number;
-  incomingTotal: Number;
-  outgoingValue: Number;
-  outgoingTotal: Number;
-}
-
 export interface ITransaction {
   id: String;
   value: Number;

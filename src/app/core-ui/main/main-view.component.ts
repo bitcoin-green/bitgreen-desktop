@@ -11,6 +11,7 @@ import {BlockStatusService, RpcService, RpcStateService} from '../../core/core.m
 import { NewTxNotifierService } from 'app/core/rpc/rpc.module';
 import { UpdaterService } from 'app/core/updater/updater.service';
 import { ModalsHelperService } from 'app/modals/modals.module';
+import {ConsoleModalComponent} from "./status/modal/help-modal/console-modal.component";
 
 /*
  * The MainView is basically:
@@ -208,6 +209,11 @@ export class MainViewComponent implements OnInit, OnDestroy {
     this.syncString = progress === 100
       ? 'Fully synced'
       : `${progress.toFixed(2)} %`
+  }
+
+  /* Open Debug Console Window */
+  openConsoleWindow() {
+    this.dialog.open(ConsoleModalComponent);
   }
 
 }

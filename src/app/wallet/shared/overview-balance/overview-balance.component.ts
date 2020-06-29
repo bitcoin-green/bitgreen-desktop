@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
-import { IOverviewBalance } from 'app/types/wallet';
+import {Amount} from "../../../core/util/utils";
+import {Log} from "ng2-logger";
+import { RpcService, RpcStateService } from "../../../core/core.module";
 
 @Component({
   selector: 'overview-balance',
@@ -7,9 +9,140 @@ import { IOverviewBalance } from 'app/types/wallet';
   styleUrls: ['./overview-balance.component.scss'],
 })
 export class OverviewBalanceComponent implements OnInit {
-  @Input() balance: IOverviewBalance;
 
-  constructor() {}
+  constructor(
+    private rpc: RpcService,
+    private rpcState: RpcStateService
+  ) {}
+  private destroyed: boolean = false;
+  private log: any = Log.create('blockstatus.service id:' + Math.floor((Math.random() * 1000) + 1));
+  private listeningForUpdates: boolean = false;
 
-  ngOnInit() {}
+  private totalBalance: Amount = new Amount(0);
+  private availableBalance: Amount = new Amount(0);
+  private unconfirmedBalance: Amount = new Amount(0);
+  private lockedBalance: Amount = new Amount(0);
+  public incomingValue: number = 0;
+  public outgoingValue: number = 0;
+  public monthlyTotal: number = 0;
+
+  ngOnInit() {
+    this.postConstructor();
+  }
+
+  postConstructor(): void {
+
+    // load the first transactions
+    this.updateBalanceData();
+
+    // register the updates, every block / tx!
+    this.registerUpdates();
+    this.listeningForUpdates = true;
+  }
+
+  registerUpdates(): void {
+
+    // prevent multiple listeners
+    if (this.listeningForUpdates) {
+      this.log.er(`Already listeniing for updates, postConstructor called twice?`);
+      return;
+    }
+
+    this.rpcState.observe('getbalancedatadesktop', 'totalBalance')
+      .takeWhile(() => !this.destroyed)
+      .distinctUntilChanged() // only update when txcount changes
+      .skip(1) // skip the first one (shareReplay)
+      .subscribe(txcount => {
+        this.log.d('--- update balance data ---');
+        this.updateBalanceData();
+      });
+
+    this.rpcState.observe('getbalancedatadesktop', 'availableBalance')
+      .takeWhile(() => !this.destroyed)
+      .distinctUntilChanged() // only update when txcount changes
+      .skip(1) // skip the first one (shareReplay)
+      .subscribe(txcount => {
+        this.log.d('--- update balance data ---');
+        this.updateBalanceData();
+      });
+
+    this.rpcState.observe('getbalancedatadesktop', 'unconfirmedBalance')
+      .takeWhile(() => !this.destroyed)
+      .distinctUntilChanged() // only update when txcount changes
+      .skip(1) // skip the first one (shareReplay)
+      .subscribe(txcount => {
+        this.log.d('--- update balance data ---');
+        this.updateBalanceData();
+      });
+
+    this.rpcState.observe('getbalancedatadesktop', 'lockedBalance')
+      .takeWhile(() => !this.destroyed)
+      .distinctUntilChanged() // only update when txcount changes
+      .skip(1) // skip the first one (shareReplay)
+      .subscribe(txcount => {
+        this.log.d('--- update balance data ---');
+        this.updateBalanceData();
+      });
+
+    this.rpcState.observe('getbalancedatadesktop', 'incoming_value')
+      .takeWhile(() => !this.destroyed)
+      .distinctUntilChanged() // only update when txcount changes
+      .skip(1) // skip the first one (shareReplay)
+      .subscribe(txcount => {
+        this.log.d('--- update balance data ---');
+        this.updateBalanceData();
+      });
+
+    this.rpcState.observe('getbalancedatadesktop', 'outgoing_value')
+      .takeWhile(() => !this.destroyed)
+      .distinctUntilChanged() // only update when txcount changes
+      .skip(1) // skip the first one (shareReplay)
+      .subscribe(txcount => {
+        this.log.d('--- update balance data ---');
+        this.updateBalanceData();
+      });
+
+    this.rpcState.observe('getbalancedatadesktop', 'monthly_total')
+      .takeWhile(() => !this.destroyed)
+      .distinctUntilChanged() // only update when txcount changes
+      .skip(1) // skip the first one (shareReplay)
+      .subscribe(txcount => {
+        this.log.d('--- update balance data ---');
+        this.updateBalanceData();
+      });
+
+  }
+
+
+  updateBalanceData(): void {
+    this.rpc.call('getbalancedatadesktop')
+      .subscribe(
+        (_balance: Array<Object>) => {
+
+          this.log.d(`getbalancedatadesktop(): totalBalance ${_balance['totalBalance']}`);
+          this.log.d(`getbalancedatadesktop(): availableBalance ${_balance['availableBalance']}`);
+          this.log.d(`getbalancedatadesktop(): unconfirmedBalance ${_balance['unconfirmedBalance']}`);
+          this.log.d(`getbalancedatadesktop(): lockedBalance ${_balance['lockedBalance']}`);
+          this.log.d(`getbalancedatadesktop(): incomingValue ${_balance['incoming_value']}`);
+          this.log.d(`getbalancedatadesktop(): outgoingValue ${_balance['outgoing_value']}`);
+          this.log.d(`getbalancedatadesktop(): monthlyTotal ${_balance['monthly_total']}`);
+          this.totalBalance = new Amount(_balance['totalBalance'] || 0, 4);
+          this.availableBalance = new Amount(_balance['availableBalance'] || 0, 4);
+          this.unconfirmedBalance = new Amount(_balance['unconfirmedBalance'] || 0, 4);
+          this.lockedBalance = new Amount(_balance['lockedBalance'] || 0, 4);
+          this.incomingValue = _balance['incoming_value'] || 0
+          this.outgoingValue = _balance['outgoing_value'] || 0
+          this.monthlyTotal = _balance['monthly_total'] || 0
+
+        },
+        (error) => {
+          this.log.error('Failed to get balance getbalancedatadesktop(), ', error);
+        }
+      );
+  }
+
+  ngOnDestroy() {
+    this.destroyed = true;
+  }
+
 }
