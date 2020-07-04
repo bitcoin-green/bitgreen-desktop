@@ -13,7 +13,7 @@ export class HistoryComponent implements OnInit {
 
   categories: Array<any> = [
     { title: 'All transactions', value: 'all', icon: '' },
-    { title: 'Sent', value: 'sent_to', icon: 'send' },
+    { title: 'Sent', value: 'send', icon: 'send' },
     { title: 'Received', value: 'receive', icon: 'receive' },
     { title: 'Staked', value: 'mint_by_stake', icon: 'stake' },
     { title: 'Mined', value: 'mined', icon: 'transfer' },

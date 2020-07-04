@@ -4,7 +4,7 @@ import { AddressType } from './address.model';
 export type TransactionCategory =
   | 'all'
   | 'receive'
-  | 'sent_to'
+  | 'send'
   | 'payment_to_yourself'
   | 'mined'
   | 'mint_by_stake'

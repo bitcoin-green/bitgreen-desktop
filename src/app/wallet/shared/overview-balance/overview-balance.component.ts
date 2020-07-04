@@ -27,7 +27,50 @@ export class OverviewBalanceComponent implements OnInit {
   public monthlyTotal: number = 0;
 
   ngOnInit() {
-    this.postConstructor();
+    this.rpcState.observe('getbalancedatadesktop', 'totalBalance')
+      .takeWhile(() => !this.destroyed)
+      .subscribe(
+        totalbalance => this.totalBalance = new Amount(totalbalance || 0, 4),
+        error => this.log.error('Failed to get balance, ', error));
+
+    this.rpcState.observe('getbalancedatadesktop', 'availableBalance')
+      .takeWhile(() => !this.destroyed)
+      .subscribe(
+        availableBalance => this.availableBalance = new Amount(availableBalance || 0, 4),
+        error => this.log.error('Failed to get balance, ', error));
+
+    this.rpcState.observe('getbalancedatadesktop', 'unconfirmedBalance')
+      .takeWhile(() => !this.destroyed)
+      .subscribe(
+        unconfirmedBalance => this.unconfirmedBalance = new Amount(unconfirmedBalance || 0, 4),
+        error => this.log.error('Failed to get balance, ', error));
+
+    this.rpcState.observe('getbalancedatadesktop', 'lockedBalance')
+      .takeWhile(() => !this.destroyed)
+      .subscribe(
+        lockedBalance => this.lockedBalance = new Amount(lockedBalance || 0, 4),
+        error => this.log.error('Failed to get balance, ', error));
+
+    this.rpcState.observe('getbalancedatadesktop', 'incoming_value')
+      .takeWhile(() => !this.destroyed)
+      .subscribe(
+        incomingValue => this.incomingValue = incomingValue || 0,
+        error => this.log.error('Failed to get balance, ', error));
+
+    this.rpcState.observe('getbalancedatadesktop', 'outgoing_value')
+      .takeWhile(() => !this.destroyed)
+      .subscribe(
+        outgoingValue => this.outgoingValue = outgoingValue || 0,
+        error => this.log.error('Failed to get balance, ', error));
+
+    this.rpcState.observe('getbalancedatadesktop', 'monthly_total')
+      .takeWhile(() => !this.destroyed)
+      .subscribe(
+        monthlyTotal => this.monthlyTotal = monthlyTotal || 0,
+        error => this.log.error('Failed to get balance, ', error));
+
+
+    //this.postConstructor();
   }
 
   postConstructor(): void {
