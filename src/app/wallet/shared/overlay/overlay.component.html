@@ -1,0 +1,60 @@
+<div class="overlay">
+  <div class="overlay__wrap">
+    <h1>Secure your wallet</h1>
+    <p>Lock or unlock your wallet</p>
+
+    <div
+      class="overlay__content"
+      fxLayout="row"
+      fxLayoutAlign="space-between start"
+    >
+      <div class="overlay__content--lock">
+        <div class="overlay__content--lock__icon">
+          <mat-icon class="icon-lock">lock</mat-icon>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+          <mat-icon class="icon-check">check</mat-icon>
+          <span>Locked</span>
+        </div>
+      </div>
+
+      <div class="overlay__content--option" fxLayout="row">
+        <span [ngClass]="locked ? 'active' : ''" (click)="setLocked(true)"
+          >Lock</span
+        >
+        <span [ngClass]="!locked ? 'active' : ''" (click)="setLocked(false)"
+          >Unlock</span
+        >
+      </div>
+
+      <div class="overlay__content--unlock">
+        <div class="overlay__content--unlock__icon">
+          <mat-icon>lock_open</mat-icon>
+        </div>
+
+        <div class="overlay__content--unlock__input">
+          <mat-icon>vpn_key</mat-icon>
+          <input
+            placeholder="Password"
+            type="password"
+            [(ngModel)]="password"
+          />
+        </div>
+
+        <div
+          class="overlay__content--unlock__check"
+          fxLayoutAlign="start center"
+        >
+          <input type="checkbox" [checked]="checkStaking" />
+          <label (click)="checkStaking = !checkStaking"></label>
+
+          <p>Staking only</p>
+        </div>
+
+        <button>Unlock</button>
+      </div>
+    </div>
+
+    <mat-icon class="icon-close">close</mat-icon>
+  </div>
+</div>

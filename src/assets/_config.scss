@@ -17,7 +17,7 @@ Global SCSS config file defining app-wide settings (included in every page)
     1. Variables
 \* ------------------------------- */
 
-$font: "Roboto", sans-serif;
+$font: 'Roboto', sans-serif;
 
 // main colors
 $color: #00a519; // primary green-ish color
@@ -53,12 +53,13 @@ $break-l: 1500px;
 $break-xl: 1700px;
 $break-hd: 1920px;
 $break-xhd: 2200px;
+$height-menu: 79px;
 
 /* ------------------------------- *\
     2. Global imports
 \* ------------------------------- */
 
-@import "scss/mixins";
+@import 'scss/mixins';
 
 /* ------------------------------- *\
     3. Templates
